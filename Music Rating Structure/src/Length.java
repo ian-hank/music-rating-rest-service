@@ -21,6 +21,8 @@ public class Length {
 	//Creating Length through initializing time
 	public Length(int time) {
 		Length.time = time;
+		minutes = time / 60; 
+		seconds = time % 60;
 	}
 	
 	//Creating Length through initializing seconds and minutes

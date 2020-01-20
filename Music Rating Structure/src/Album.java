@@ -9,10 +9,10 @@ public class Album {
 	public Album() {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
-		System.out.println("What is the name of the song?: ");
+		System.out.print("What is the name of the Album?: ");
 		name = input.nextLine();
 	}
-	//Creating new Album through text
+	//Creating new Album through initializing name
 	public Album(String name) {
 		Album.name = name;
 	}

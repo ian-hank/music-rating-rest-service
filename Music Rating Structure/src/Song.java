@@ -9,10 +9,10 @@ public class Song {
 	public Song() {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
-		System.out.println("What is the name of the song?: ");
+		System.out.print("What is the name of the song?: ");
 		name = input.nextLine();
 	}
-	//Creating new Song through text
+	//Creating new Song through initializing name
 	public Song(String name) {
 		Song.name = name;
 	}

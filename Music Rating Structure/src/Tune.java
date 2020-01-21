@@ -100,5 +100,14 @@ public class Tune {
 		rating = new Rating(creativity, harmonics, lyrics, production, originality);
 		return rating.toString();
 	}
-
+	
+	//Converts Tune to a readable string
+	public void tuneToString() {
+		System.out.println("Song: " + song.getName() + "--"
+				+ "\nAlbum: " + album.getName() + "--"
+				+ "\nAuthor: " + author.getName() + "--"
+				+ "\nGenre: " + genre.getName() + "--"
+				+ "\nLength: " + length.getTime() + "--"
+				+ "\nRating: " + rating.getRating() + "--");
+	}	
 }

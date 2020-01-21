@@ -26,7 +26,7 @@ public interface ListInterface<E> extends Iterable<E>{
 
 	int lastIndexOf(Object arg0);
 
-	boolean remove(Object arg0);
+	boolean remove(E arg0);
 
 	E remove(int arg0);
 

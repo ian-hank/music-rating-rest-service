@@ -3,6 +3,13 @@ import java.util.Scanner;
 
 public class Rating {
 	
+	//Constant Variables
+	private final double CREATIVITY_WEIGHT = 1.0;
+	private final double HARMONICS_WEIGHT = 0.9;
+	private final double LYRICS_WEIGHT = 0.8;
+	private final double PRODUCTION_WEIGHT = 0.7;
+	private final double ORIGINALITY_WEIGHT = 0.6;
+	
 	private static double finalRating;				//Overall Rating of the song
 	private static double creativity;				//Creativity rating or potential impact of the song on the industry
 	private static double harmonics;				//Rating for main beat/bass line/melody or whatever it is
@@ -16,13 +23,13 @@ public class Rating {
 		Scanner input = new Scanner(System.in);
 		System.out.print("On a scale of 1-10 how would you rate the Creativity/Potential impact of the song?: ");
 		creativity = input.nextDouble();
-		System.out.print("\nOn a scale of 1-10 how would you rate the Melody/Harmonics/Beat of the song?: ");
+		System.out.print("On a scale of 1-10 how would you rate the Melody/Harmonics/Beat of the song?: ");
 		harmonics = input.nextDouble();
-		System.out.print("\nOn a scale of 1-10 how would you rate the Lyrics or Mood if it has no lyrics: ");
+		System.out.print("On a scale of 1-10 how would you rate the Lyrics or Mood if it has no lyrics: ");
 		lyrics = input.nextDouble();
-		System.out.print("\nOn a scale of 1-10 how would you rate the Production/Design of the song: ");
+		System.out.print("On a scale of 1-10 how would you rate the Production/Design of the song: ");
 		production = input.nextDouble();
-		System.out.print("\nOn a scale of 1-10 how would you rate the Originality/Uniqueness of the song?: ");
+		System.out.print("On a scale of 1-10 how would you rate the Originality/Uniqueness of the song?: ");
 		originality = input.nextDouble();
 		
 		finalRating = calcFinalRating(creativity, harmonics, lyrics, production, originality);
@@ -88,11 +95,11 @@ public class Rating {
 	
 	//Calculates the final overall rating with the sub scores given or initialized
 	public double calcFinalRating(double creativity, double harmonics, double lyrics, double production, double originality) {
-		creativity = creativity * 1;
-		harmonics = harmonics * 0.9;
-		lyrics = lyrics * 0.8;
-		production = production * 0.7;
-		originality = originality * 0.6;
+		creativity = creativity * CREATIVITY_WEIGHT;
+		harmonics = harmonics * HARMONICS_WEIGHT;
+		lyrics = lyrics * LYRICS_WEIGHT;
+		production = production * PRODUCTION_WEIGHT;
+		originality = originality * ORIGINALITY_WEIGHT;
 		
 		double overall = creativity + harmonics + lyrics + production + originality;
 		return overall;

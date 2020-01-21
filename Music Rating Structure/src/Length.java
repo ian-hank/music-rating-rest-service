@@ -13,7 +13,7 @@ public class Length {
 		Scanner input = new Scanner(System.in);
 		System.out.print("How many minutes is the song?: ");
 		minutes = input.nextInt();
-		System.out.print("\nHow many seconds is the song?: ");
+		System.out.print("How many seconds is the song?: ");
 		seconds = input.nextInt();
 		time = finalTime(seconds, minutes);
 	}

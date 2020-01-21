@@ -1,3 +1,4 @@
+//Class containing highest object "Tune"
 
 public class Tune {
 	
@@ -8,71 +9,96 @@ public class Tune {
 	private static Length length;			//Length of the Song
 	private static Rating rating;			//Overall rating of the Song
 	
+	//Creating new Tune through all of the objects
 	public Tune() {
+		song = new Song();					//Initializing the Song name
+		album = new Album();				//Initializing the Album name
+		author = new Author();				//Initializing the Author name
+		genre = new Genre();				//Initializing the Genre
+		length = new Length();				//Initializing the Song length
+		rating = new Rating();				//Initializing the Song rating
 	}
 	
-	public Tune(Song song, Album album, Author author, Genre genre, Length length, Rating rating) {
-		
+	//Creating new Tune through a painful initialization process
+	public Tune(Song song, Album album, Author author, Genre genre, Length length, Rating rating, double creativity, double harmonics, double lyrics, double production, double originality) {
+		Tune.song = song;
+		Tune.album = album;
+		Tune.author = author;
+		Tune.genre = genre;
+		Tune.length = length;
+		Tune.rating = new Rating(creativity, harmonics, lyrics, production, originality);
 	}
 	
+	//Gets the Tunes Song name
 	public String getSong() {
-		// TODO Auto-generated method stub
-		return null;
+		return song.getName();
 	}
-
+	
+	//Gets the Tunes Album name
 	public String getAlbum() {
-		// TODO Auto-generated method stub
-		return null;
+		return album.getName();
 	}
-
+	
+	//Gets the Tunes Authors name
 	public String getAuthor() {
-		// TODO Auto-generated method stub
-		return null;
+		return author.getName();
 	}
-
+	
+	//Gets the Tunes Genre
 	public String getGenre() {
-		// TODO Auto-generated method stub
-		return null;
+		return genre.getName();
 	}
-
+	
+	//Gets the Tunes Length in seconds
 	public int getLength() {
-		// TODO Auto-generated method stub
-		return 0;
+		return length.getTime();
 	}
-
+	
+	//Gets the final rating of the song out of 40
 	public double getFinalRating() {
-		// TODO Auto-generated method stub
-		return 0;
+		return rating.getRating();
 	}
-
-	public String setSong() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	//Sets the Tunes Song name
+	public boolean setSong(String name) {
+		song.setName(name);
+		return song.getName() == name;
 	}
-
-	public String setAlbum() {
-		// TODO Auto-generated method stub
-		return null;
+	//Sets the Tunes Album name
+	public boolean setAlbum(String name) {
+		album.setName(name);
+		return album.getName() == name;
 	}
-
-	public String setAuthor() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	//Sets the Tunes Authors name
+	public boolean setAuthor(String name) {
+		author.setName(name);
+		return author.getName() == name;
 	}
-
-	public String setGenre() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	//Sets the Tunes Genre
+	public boolean setGenre(String name) {
+		genre.setName(name);
+		return genre.getName() == name;
 	}
-
-	public int setLength() {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	
+	//Sets the Tunes Length in seconds
+	public boolean setLength(int time) {
+		length.setTime(time);
+		return length.getTime() == time;
 	}
-
-	public double setFinalRating() {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	//Sets the Tunes length in seconds and minutes
+	public boolean setLength(int seconds, int minutes) {
+		length.setTime(seconds, minutes);
+		return length.getTime() == (minutes * 60 + seconds);
+	}
+	
+	//Sets the final rating of the Tune
+	public String setFinalRating(double creativity, double harmonics, double lyrics, double production, double originality) {
+		rating = new Rating(creativity, harmonics, lyrics, production, originality);
+		return rating.toString();
 	}
 
 }

@@ -20,14 +20,14 @@ public class Tune {
 	}
 	
 	//Creating new Tune through a painful initialization process
-	public Tune(Song song, Album album, Author author, Genre genre, Length length, Rating rating, double creativity, double harmonics, double lyrics, double production, double originality) {
-		Tune.song = song;
-		Tune.album = album;
-		Tune.author = author;
-		Tune.genre = genre;
-		Tune.length = length;
-		Tune.rating = new Rating(creativity, harmonics, lyrics, production, originality);
-	}
+//	public Tune(Song song, Album album, Author author, Genre genre, Length length, Rating rating, double creativity, double harmonics, double lyrics, double production, double originality) {
+//		Tune.song = song;
+//		Tune.album = album;
+//		Tune.author = author;
+//		Tune.genre = genre;
+//		Tune.length = length;
+//		Tune.rating = new Rating(creativity, harmonics, lyrics, production, originality);
+//	}
 	
 	//Gets the Tunes Song name
 	public String getSong() {

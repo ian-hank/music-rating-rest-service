@@ -116,16 +116,7 @@ public class TuneArray implements ListInterface<Tune>{
 	}
 
 	//Converts into readable strings
-	public String toString() {
-		System.out.println("Song: " + data[0].tuneToString() + "--"
-				+ "\nAlbum: " + album.getName() + "--"
-				+ "\nAuthor: " + author.getName() + "--"
-				+ "\nGenre: " + genre.getName() + "--"
-				+ "\nLength: " + length.getTime() + "--"
-				+ "\nRating: " + rating.getRating() + "--");
-			}	
-		}
-	}
+	
 
 	//Ensures the array is not full and has room
 	public void ensureCapacity() {

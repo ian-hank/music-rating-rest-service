@@ -2,56 +2,57 @@
 
 public class Tune {
 	
-	private static Song song;				//Name of the Song
-	private static Album album;				//Name of the Album
-	private static Author author;			//Name of the Author
-	private static Genre genre;				//Name of the Genre
-	private static Length length;			//Length of the Song
-	private static Rating rating;			//Overall rating of the Song
+	private String song;				//Name of the Song
+	private String album;			//Name of the Album
+	private String author;			//Name of the Author
+	private String genre;			//Name of the Genre
+	private int length;				//Length of the Song
+	private Rating rating;			//Overall rating of the Song
 	
 	//Creating new Tune through all of the objects
 	public Tune() {
-		song = new Song();					//Initializing the Song name
-		album = new Album();				//Initializing the Album name
-		author = new Author();				//Initializing the Author name
-		genre = new Genre();				//Initializing the Genre
-		length = new Length();				//Initializing the Song length
-		rating = new Rating();				//Initializing the Song rating
+		this.song = "" ;					//Initializing the Song name
+		this.album = "" ;				//Initializing the Album name
+		this.author = "" ;				//Initializing the Author name
+		this.genre = "" ;				//Initializing the Genre
+		this.length = 0;					//Initializing the Song length
+		this.rating = new Rating();		//Initializing the Song rating
 	}
 	
 	//Creating new Tune through a painful initialization process
-//	public Tune(Song song, Album album, Author author, Genre genre, Length length, Rating rating, double creativity, double harmonics, double lyrics, double production, double originality) {
-//		Tune.song = song;
-//		Tune.album = album;
-//		Tune.author = author;
-//		Tune.genre = genre;
-//		Tune.length = length;
-//		Tune.rating = new Rating(creativity, harmonics, lyrics, production, originality);
-//	}
+	public Tune(String song, String album, String author, String genre, int length, Rating rating,
+			double creativity, double harmonics, double lyrics, double production, double originality) {
+		this.song = song;
+		this.album = album;
+		this.author = author;
+		this.genre = genre;
+		this.length = length;
+		this.rating = new Rating(creativity, harmonics, lyrics, production, originality);
+	}
 	
 	//Gets the Tunes Song name
 	public String getSong() {
-		return song.getName();
+		return this.song;
 	}
 	
 	//Gets the Tunes Album name
 	public String getAlbum() {
-		return album.getName();
+		return this.album;
 	}
 	
 	//Gets the Tunes Authors name
 	public String getAuthor() {
-		return author.getName();
+		return this.author;
 	}
 	
 	//Gets the Tunes Genre
 	public String getGenre() {
-		return genre.getName();
+		return this.genre;
 	}
 	
 	//Gets the Tunes Length in seconds
 	public int getLength() {
-		return length.getTime();
+		return this.length;
 	}
 	
 	//Gets the final rating of the song out of 40
@@ -61,38 +62,32 @@ public class Tune {
 	
 	//Sets the Tunes Song name
 	public boolean setSong(String name) {
-		song.setName(name);
-		return song.getName() == name;
+		this.song = name;
+		return this.song == name;
 	}
 	//Sets the Tunes Album name
 	public boolean setAlbum(String name) {
-		album.setName(name);
-		return album.getName() == name;
+		this.album = name;
+		return this.album == name;
 	}
 	
 	//Sets the Tunes Authors name
 	public boolean setAuthor(String name) {
-		author.setName(name);
-		return author.getName() == name;
+		this.author = name;
+		return this.author == name;
 	}
 	
 	//Sets the Tunes Genre
 	public boolean setGenre(String name) {
-		genre.setName(name);
-		return genre.getName() == name;
+		this.genre = name;
+		return this.genre == name;
 	}
 	
 	
 	//Sets the Tunes Length in seconds
 	public boolean setLength(int time) {
-		length.setTime(time);
-		return length.getTime() == time;
-	}
-	
-	//Sets the Tunes length in seconds and minutes
-	public boolean setLength(int seconds, int minutes) {
-		length.setTime(seconds, minutes);
-		return length.getTime() == (minutes * 60 + seconds);
+		this.length = time;
+		return this.length == time;
 	}
 	
 	//Sets the final rating of the Tune
@@ -102,12 +97,13 @@ public class Tune {
 	}
 	
 	//Converts Tune to a readable string
-	public void tuneToString() {
-		System.out.println("Song: " + song.getName() + "--"
-				+ "\nAlbum: " + album.getName() + "--"
-				+ "\nAuthor: " + author.getName() + "--"
-				+ "\nGenre: " + genre.getName() + "--"
-				+ "\nLength: " + length.getTime() + "--"
+	public String tuneToString() {
+		String finalName = ("Song: " + this.song + "--"
+				+ "\nAlbum: " + this.album + "--"
+				+ "\nAuthor: " + this.author + "--"
+				+ "\nGenre: " + this.genre + "--"
+				+ "\nLength: " + this.length + "--"
 				+ "\nRating: " + rating.getRating() + "--");
+		return finalName;
 	}	
 }

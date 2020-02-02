@@ -1,33 +1,35 @@
-
 public class WorkBench {
 	public static void main(String[] args) {
 		
-		Song song = new Song("Hello World");
-		Album album = new Album("New Heights");
-		Author author = new Author("Ian C Hank");
-		Genre genre = new Genre("Dance");
-		Length length = new Length(143);
-		double creativity = 8;
-		double harmonics = 6;
-		double lyrics = 5;
-		double production = 9;
-		double originality = 10;
-		Rating rating = new Rating(creativity, harmonics, lyrics, production, originality);
-		
 		//Getting new tune
-		Tune setTune = new Tune();
 		Tune tune = new Tune();
+		tune.setSong("Hello Song");
+		tune.setAuthor("Ian Hank");
+		tune.setAlbum("BIG BOI");
+		tune.setGenre("Dubstep");
+		tune.setLength(2345);
+		tune.setFinalRating(7, 5, 3, 8, 2);
+		
+		Tune tune2 = new Tune();
+		tune2.setSong("Well Look");
+		tune2.setAuthor("I fixed");
+		tune2.setAlbum("the problem");
+		tune2.setGenre("in the code");
+		tune2.setLength(222);
+		tune2.setFinalRating(10, 10, 10, 10, 10);
+		
 		
 		//PrintStream for results
-		setTune.tuneToString();
-		tune.tuneToString();
+		System.out.println(tune.tuneToString() + "\n" + tune2.tuneToString());
 		
 		//Creating TuneArray
 		TuneArray data = new TuneArray();
 		
 		//Managing Array Testing
 		data.add(tune);
-		data.add(setTune);
+		data.add(tune2);
+		data.toString();
+		data.printTunes();
 		
 	}
 }

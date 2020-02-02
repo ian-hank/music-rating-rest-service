@@ -10,12 +10,12 @@ public class Rating {
 	private final double PRODUCTION_WEIGHT = 0.7;
 	private final double ORIGINALITY_WEIGHT = 0.6;
 	
-	private static double finalRating;				//Overall Rating of the song
-	private static double creativity;				//Creativity rating or potential impact of the song on the industry
-	private static double harmonics;				//Rating for main beat/bass line/melody or whatever it is
-	private static double lyrics;					//Rating for the lyrics if the song has none a mood rating felt throughout song
-	private static double production;				//Overall rating for production and finishing design of the song
-	private static double originality;				//Originality or Uniqueness of the song
+	private double finalRating;				//Overall Rating of the song
+	private double creativity;				//Creativity rating or potential impact of the song on the industry
+	private double harmonics;				//Rating for main beat/bass line/melody or whatever it is
+	private double lyrics;					//Rating for the lyrics if the song has none a mood rating felt throughout song
+	private double production;				//Overall rating for production and finishing design of the song
+	private double originality;				//Originality or Uniqueness of the song
 	
 	//Creating new rating through user input
 	public Rating() {
@@ -37,11 +37,11 @@ public class Rating {
 	
 	//Creating new rating through initialization
 	public Rating(double creativity, double harmonics, double lyrics, double production, double originality) {
-		Rating.creativity = creativity;
-		Rating.harmonics = harmonics;
-		Rating.lyrics = lyrics;
-		Rating.production = production;
-		Rating.originality = originality;
+		this.creativity = creativity;
+		this.harmonics = harmonics;
+		this.lyrics = lyrics;
+		this.production = production;
+		this.originality = originality;
 		
 		finalRating = calcFinalRating(creativity, harmonics, lyrics, production, originality);
 	}
@@ -83,11 +83,11 @@ public class Rating {
 		
 	//Sets the rating of the song
 	public boolean setRating(double creativity, double harmonics, double lyrics, double production, double originality) {
-		Rating.creativity = creativity;
-		Rating.harmonics = harmonics;
-		Rating.lyrics = lyrics;
-		Rating.production = production;
-		Rating.originality = originality;
+		this.creativity = creativity;
+		this.harmonics = harmonics;
+		this.lyrics = lyrics;
+		this.production = production;
+		this.originality = originality;
 		
 		finalRating = calcFinalRating(creativity, harmonics, lyrics, production, originality);
 		return calcFinalRating(creativity, harmonics, lyrics, production, originality) == finalRating;

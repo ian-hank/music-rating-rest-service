@@ -3,8 +3,8 @@ import java.util.Iterator;
 public class TuneArray {
 	
 	//Constants
-	private final int DEFAULT_CAPACITY = 5;
-	private final int ELEMENTS_TO_ADD = 30;
+	private final int DEFAULT_CAPACITY = 1;
+	private final int ELEMENTS_TO_ADD = 1;
 	
 	//Instance Variable
 	private static Tune[] data;
@@ -17,17 +17,35 @@ public class TuneArray {
 	
 	//Adding to the end of the array in time O(1)
 	public boolean add(Tune tune) {
+		ensureCapacity();
+		data[size()] = tune;
+		size++;
+		
+		return (data[size() - 1] == tune);
+	}
+
+	//Add in order of rating
+	public boolean addInPlace(Tune tune) {
+		//TODO Organized add method by rating
+		size++;
 		return false;
 	}
 
 	//Removing specific Song in time O(n)
 	public boolean remove(Tune tune) {
-		
-	}
-
-	//Removing at specific index in time O(n)
-	public Tune remove(int index) {
-		
+		for (int i = 0; i <= size(); i++) {
+			if (data[i] == tune) {
+				data[i] = null;
+				int removed = i;
+				
+				for (int j = removed; j != size() - 1; j++) {
+					data[j] = data[j + 1];
+				}
+				size--;
+				return true;
+			}
+		}
+		return false;
 	}
 
 	//Clearing the SongArray
@@ -85,21 +103,23 @@ public class TuneArray {
 	}
 
 	//Converts into readable strings
-	public void printTunes() {
-		for (int i = 0; i <= size(); i++) {
-			System.out.println(data[i].tuneToString());
+	public void printQuickTunes() {
+		for (int i = 0; i != size(); i++) {
+			if (data[i] != null) {
+				System.out.print("[" + data[i].getSong() + "] " );
+			}
 		}
 	}
 
 	//Ensures the array is not full and has room
 	public void ensureCapacity() {
 		if (size() >= data.length) {
-			Tune[] newData = new Tune[data.length + ELEMENTS_TO_ADD];
-
-			for(int i = 0; i <= size(); i++) {
+			Tune[] newData = new Tune[size() + ELEMENTS_TO_ADD];
+			for (int i = 0; i < size(); i++) {
 				newData[i] = data[i];
 			}
 			data = newData;
+			
 		}
 	}
 

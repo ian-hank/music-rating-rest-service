@@ -2,7 +2,7 @@
 
 public class Tune {
 	
-	private String song;				//Name of the Song
+	private String song;			//Name of the Song
 	private String album;			//Name of the Album
 	private String author;			//Name of the Author
 	private String genre;			//Name of the Genre
@@ -11,12 +11,12 @@ public class Tune {
 	
 	//Creating new Tune through all of the objects
 	public Tune() {
-		this.song = "" ;					//Initializing the Song name
+		this.song = "" ;				//Initializing the Song name
 		this.album = "" ;				//Initializing the Album name
 		this.author = "" ;				//Initializing the Author name
 		this.genre = "" ;				//Initializing the Genre
-		this.length = 0;					//Initializing the Song length
-		this.rating = new Rating();		//Initializing the Song rating
+		this.length = 0;				//Initializing the Song length
+		this.rating = new Rating(10,5,3,5,6);		//Initializing the Song rating
 	}
 	
 	//Creating new Tune through a painful initialization process

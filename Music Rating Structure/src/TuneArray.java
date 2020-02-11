@@ -55,12 +55,8 @@ public class TuneArray {
 	}
 
 	//Checks to see if the SongArray contains Song in time O(n)
-	public boolean contains(Object tune) {
-		if(indexOf(tune) == -1) {
-			return false;
-		} else {
-			return true;
-		}
+	public boolean contains(Tune tune) {
+		return indexOf(tune) != -1;
 	}
 
 	//Gets Song in time O(1)
@@ -70,7 +66,7 @@ public class TuneArray {
 	}
 
 	//Finds the index of a specific Song in time O(n)
-	public int indexOf(Object tune) {
+	public int indexOf(Tune tune) {
 		for (int i = 0; i <= size(); i++) {
 			if (data[i] == tune) {
 				return i;
@@ -128,17 +124,5 @@ public class TuneArray {
 		if (index > size()) {
 			throw new IndexOutOfBoundsException("The specified index " + index + " is undefined within this structure.");
 		}	
-	}
-
-	//
-	public int lastIndexOf(Object arg0) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	//
-	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

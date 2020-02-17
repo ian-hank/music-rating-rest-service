@@ -96,8 +96,14 @@ public class Tune implements Serializable{
 	
 	//Sets the final rating of the Tune
 	public String setFinalRating(double creativity, double harmonics, double lyrics, double production, double originality) {
-		rating = new Rating(creativity, harmonics, lyrics, production, originality);
+		this.rating = new Rating(creativity, harmonics, lyrics, production, originality);
 		return rating.toString();
+	}
+	
+	//Sets the final rating of the Tune
+	public String setFinalRating(Rating rating) {
+		this.rating = rating;
+		return this.rating.toString();
 	}
 	
 	//Converts Tune to a readable string

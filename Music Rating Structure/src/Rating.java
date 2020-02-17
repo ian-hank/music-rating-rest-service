@@ -1,7 +1,10 @@
 //Needed imports
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Rating {
+public class Rating implements Serializable {
+	
+	private static final long serialVersionUID = 1403141259525473554L;
 	
 	//Constant Variables
 	private final double CREATIVITY_WEIGHT = 1.0;

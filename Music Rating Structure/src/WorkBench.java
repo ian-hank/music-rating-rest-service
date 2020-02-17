@@ -34,9 +34,13 @@ public class WorkBench {
 			mainArray.add(newTune);
 			writeToFile(mainArray);
 			
+			System.out.println("Congrats! Your first song is in the database under the file myDatabase.bin!");
+			
 		//Quick Start
 		} else if (enter.equals("2")) {
-			//TODO Finish The Quick Start
+			System.out.print("Please enter file path to myDatabase.bin: ");
+			String filepath = input.next();
+			mainArray = importFromFile(filepath);
 			
 		//About
 		} else if (enter.equals("3")) {
@@ -52,9 +56,16 @@ public class WorkBench {
 			System.exit(0);
 		}
 		
+		String filepath = "myDatabase.bin";
 		
+		TuneArray tempArray = new TuneArray();
+		tempArray = importFromFile(filepath);
 		
-		
+		for (int i = 0; i < tempArray.size(); i++) {
+			mainArray.add(tempArray.get(i));
+		}
+		System.out.println("Can we get to here");
+		mainArray.printQuickTunes();
 		
 	}
 	
@@ -109,14 +120,43 @@ public class WorkBench {
 	}
 	
 	public static void writeToFile(TuneArray array) throws IOException {
-		FileOutputStream out = new FileOutputStream("myfile.bin");
+		FileOutputStream out = new FileOutputStream("myDatabase.bin");
 		
 		ObjectOutputStream objOut = new ObjectOutputStream(out);
+		
+		objOut.write(array.size());
 		
 		for (int i = 0; i < array.size(); i++) {
 			objOut.writeObject(array.get(i));	
 		}
 		
 		objOut.close();
+	}
+	
+	public static TuneArray importFromFile(String filepath) {
+		TuneArray tempArray = new TuneArray();
+		int count;
+		try {
+			 
+			FileInputStream fileIn = new FileInputStream(filepath);
+			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+			
+			count = objectIn.readInt();
+			
+			for (int i = 0; i < count; i++) {
+				System.out.println("Trial");
+				Tune obj = (Tune) objectIn.readObject();
+				tempArray.add(obj);
+				System.out.println("Object " + (i+1) + ": " + obj.tuneToString());
+			}
+           
+           
+           objectIn.close();
+ 
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+		
+		return tempArray;
 	}
 }

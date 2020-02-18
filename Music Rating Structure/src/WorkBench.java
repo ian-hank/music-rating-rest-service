@@ -56,45 +56,48 @@ public class WorkBench {
 			
 		//Exit
 		} else if (menuChoice.equals("4")) {
-			System.out.print("Well, I hope to see you soon! Now Exiting");
-			for (int i = 0; i <= 2; i++) {
-				Thread.sleep(950);
-				System.out.print(".");
-			}
-			System.exit(0);
+			exitCall();
 		}
 		
+		printOverallMenu();
+		
 		do {
-			
-			System.out.println("\n ________________________");
-			System.out.println("|  Music Rating Database |");
-			System.out.println("|                        |");
-			System.out.println("|      --Options--       |");
-			System.out.println("|1: Add New Tune         |");
-			System.out.println("|2: Remove Tune          |");
-			System.out.println("|3: Get Tune(Index)      |");
-			System.out.println("|4: Exit --> Save/Write  |");
-			System.out.println("|						 |");
-			System.out.println("|                        |");
-			System.out.println("|                        |");
-			System.out.println("|                        |");
-			System.out.println("|________________________|");
-			System.out.print("==========================> ");
+			System.out.println("Please enter 6 for Menu! ");
+			System.out.print("Please enter a number--> ");
 			currentChoice = input.nextLine();
 			
 			if (currentChoice.equals("1")) {
 				Tune newTune = userInputTune(input);
 				mainArray.add(newTune);
-				continue;
 			} else if (currentChoice.equals("2")) {
+				System.out.print("\nWhat do you want to remove?: ");
+				String songName = input.nextLine();
 				
+				for (int i = 0; i < mainArray.size(); i++) {
+					if (mainArray.get(i).getSong() == songName) {
+						System.out.println("Removing " + mainArray.get(i).getSong());
+						mainArray.remove(mainArray.get(i));
+						break;
+					}
+				}
 			} else if (currentChoice.equals("3")) {
-				
+				System.out.println("Search for Tune Details By Song Name: ");
+				String songName = input.nextLine();
+				for (int i = 0; i < mainArray.size(); i++) {
+					if (mainArray.get(i).getSong() == songName) {
+						System.out.println("Details:\n\n " + mainArray.get(i).tuneToString());
+						break;
+					}
+				}
 			} else if (currentChoice.equals("4")) {
-				
+				exitCall();
+			} else if (currentChoice.equals("5")) {
+				mainArray.printQuickTunes();
+				System.out.println("\n");
+			} else if (currentChoice.equals("6")) {
+				printOverallMenu();
 			} else {
-				System.out.println("Im sorry I couldnt understand your response! Please enter a number!");
-				continue;
+				System.out.println("\nSorry I Couldnt Understand Your Answer!");	
 			}
 			
 		} while (!currentChoice.equals("4"));
@@ -102,7 +105,20 @@ public class WorkBench {
 		
 		
 	}
-	
+	//Prints the changes menu
+		public static void printOverallMenu() {
+			System.out.println("\n _______________________");
+			System.out.println("| Music Rating Database |");
+			System.out.println("|                       |");
+			System.out.println("|      --Options--      |");
+			System.out.println("|                       |");
+			System.out.println("|1: Add New Tune        |");
+			System.out.println("|2: Remove Tune         |");
+			System.out.println("|3: Get Tune(Index)     |");
+			System.out.println("|4: Exit --> Save/Write |");
+			System.out.println("|5: Print Quick View    |");
+			System.out.println("|_______________________|");
+		}
 	//Prints the Main Menu
 		public static void printMainMenu() {
 			System.out.println(" ________________________");
@@ -192,5 +208,14 @@ public class WorkBench {
 			e.printStackTrace();
 		}
 		return tempArray;
+	}
+	//Exits the Game
+	public static void exitCall() throws InterruptedException {
+		System.out.print("Well, I hope to see you soon! Now Exiting");
+		for (int i = 0; i <= 2; i++) {
+			Thread.sleep(950);
+			System.out.print(".");
+		}
+		System.exit(0);
 	}
 }

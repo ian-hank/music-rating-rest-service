@@ -54,35 +54,65 @@ public class Rating implements Serializable {
 		return finalRating;
 	}
 	
-		//Gets the creativity of the song
-		public double getCreativity() {
-			//TODO Finish Method
-			return 0;
+	//Gets the creativity rating of the song
+	public double getCreativity() {
+		return this.creativity;
+	}
+		
+	//Gets the harmonics rating of the song
+	public double getHarmonics() {
+		return this.harmonics;
 		}
 		
-		//Gets the creativity of the song
-		public double getHarmonics() {
-			//TODO Finish Method
-			return 0;
-		}
+	//Gets the lyrics rating of the song
+	public double getLyrics() {
+		return this.lyrics;
+	}
 		
-		//Gets the creativity of the song
-		public double getLyrics() {
-			//TODO Finish Method
-			return 0;
-		}
+	//Gets the production rating of the song
+	public double getProduction() {
+		return this.production;
+	}
 		
-		//Gets the creativity of the song
-		public double getProduction() {
-			//TODO Finish Method
-			return 0;
-		}
+	//Gets the originality rating of the song
+	public double getOriginality() {
+		return this.originality;
+	}
 		
-		//Gets the creativity of the song
-		public double getOriginality() {
-			//TODO Finish Method
-			return 0;
-		}
+	//Sets the creativity rating of the song
+	public boolean setCreativity(double rating) {
+		this.creativity = rating;
+		finalRating = calcFinalRating(creativity, harmonics, lyrics, production, originality);
+		return this.creativity == creativity;
+	}
+			
+	//Sets the harmonics rating of the song
+	public boolean setHarmonics(double rating) {
+		this.harmonics = rating;
+		finalRating = calcFinalRating(creativity, harmonics, lyrics, production, originality);
+		return this.harmonics == rating;
+	}
+			
+	//Sets the creativity of the song
+	public boolean setLyrics(double rating) {
+		this.lyrics = rating;
+		finalRating = calcFinalRating(creativity, harmonics, lyrics, production, originality);
+		return this.lyrics == rating;
+	}
+			
+	//Sets the creativity of the song
+	public boolean setProduction(double rating) {
+		this.production = rating;
+		finalRating = calcFinalRating(creativity, harmonics, lyrics, production, originality);
+		return this.production == rating;
+	}
+			
+	//Sets the creativity of the song
+	public boolean setOriginality(double rating) {
+		this.originality = rating;
+		finalRating = calcFinalRating(creativity, harmonics, lyrics, production, originality);
+		return this.originality == rating;
+	}
 		
 	//Sets the rating of the song
 	public boolean setRating(double creativity, double harmonics, double lyrics, double production, double originality) {

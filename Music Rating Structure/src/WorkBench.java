@@ -204,12 +204,11 @@ public class WorkBench {
 			}
 			objectIn.close();
 		} catch (IOException | ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return tempArray;
 	}
-	//Exits the Game
+	//Exits the Structure
 	public static void exitCall() throws InterruptedException {
 		System.out.print("Well, I hope to see you soon! Now Exiting");
 		for (int i = 0; i <= 2; i++) {

@@ -38,7 +38,8 @@ public class WorkBench {
 			mainArray.add(newTune);
 			writeToFile(mainArray);
 			
-			System.out.println("\nCongrats! Your first song is in the database under the file myDatabase.bin!\nWe will now enter the main screen for manipulating your tunes!");
+			System.out.println("\nCongrats! Your first song is in the database under the file myDatabase.bin!"
+					+ "\nWe will now enter the main screen for manipulating your tunes!");
 			
 		//Quick Start
 		} else if (menuChoice.equals("2")) {
@@ -208,13 +209,23 @@ public class WorkBench {
 		}
 		return tempArray;
 	}
+	
 	//Exits the Structure
 	public static void exitCall() throws InterruptedException {
 		System.out.print("Well, I hope to see you soon! Now Exiting");
-		for (int i = 0; i <= 2; i++) {
-			Thread.sleep(950);
-			System.out.print(".");
-		}
+		dotDelay(3);
 		System.exit(0);
 	}
+	
+	//Period Printing Thread Delay 
+	public static void dotDelay(int totalDots) {
+		for (int i = 0; i <= totalDots; i++) {
+			try {
+				Thread.sleep(950);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			System.out.print(".");
+		}
+	}	
 }

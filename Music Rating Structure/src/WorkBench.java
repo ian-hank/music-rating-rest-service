@@ -14,35 +14,32 @@ public class WorkBench {
 		final String FILE_PATH = "myDatabase.bin";
 		
 		//Instance Variables
-		String menuChoice, currentChoice;
-		TuneArray mainArray = new TuneArray();
+		String startMenuChoice; 					//Placeholder for starting menu
+		String mainMenuChoice = "5";				//Placeholder for main menu
+		TuneArray mainArray = new TuneArray();		//Main TuneArray
 		
 		//Main Menu
-		printMainMenu();
+		printStartMenu();
 		
 		//Input validation for entering the Music Rating Database
 		do {
 		    System.out.print("What would you like to do[1-4]?: ");
-		    menuChoice = input.nextLine().toLowerCase();
-		}
-		while (!"1".equals(menuChoice) && !"2".equals(menuChoice) && !"3".equals(menuChoice) && !"4".equals(menuChoice));
+		    startMenuChoice = input.nextLine().toLowerCase();
+		} while (!"1".equals(startMenuChoice) && !"2".equals(startMenuChoice) && !"3".equals(startMenuChoice) && !"4".equals(startMenuChoice));
 		
-		//New Setup
-		if (menuChoice.equals("1")) {
+		//Start Menu: New Setup
+		if (startMenuChoice.equals("1")) {
 			System.out.println("\nWelcome to your personal music rating database!");
 			System.out.println("Well have you start by rating your first song!");
 			Tune newTune = userInputTune(input);
 			mainArray.add(newTune);
-			mainArray.add(newTune);
-			mainArray.add(newTune);
-			mainArray.add(newTune);
 			writeToFile(mainArray);
-			
 			System.out.println("\nCongrats! Your first song is in the database under the file myDatabase.bin!"
 					+ "\nWe will now enter the main screen for manipulating your tunes!");
+			dotDelay(8);
 			
-		//Quick Start
-		} else if (menuChoice.equals("2")) {
+		//Start Menu: Quick Start
+		} else if (startMenuChoice.equals("2")) {
 			System.out.println("Importing all Tunes to array!");
 			TuneArray tempArray = importFromFile(FILE_PATH);
 			
@@ -50,38 +47,32 @@ public class WorkBench {
 				mainArray.set(i, tempArray.get(i));
 			}
 			
-		//About
-		} else if (menuChoice.equals("3")) {
+		//Start Menu: About
+		} else if (startMenuChoice.equals("3")) {
 			//TODO Finish The About
-			System.out.println("Yea we will finish it eventually!");
+			System.out.println("Yea I'll finish it eventually!");
 			
-		//Exit
-		} else if (menuChoice.equals("4")) {
+		//Start Menu: Exit
+		} else if (startMenuChoice.equals("4")) {
 			exitCall();
 		}
 		
-		printOverallMenu();
-		
+		printMainMenu();
+		mainMenuChoice = input.nextLine();
 		do {
-			System.out.println("Please enter 6 for Menu! ");
-			System.out.print("Please enter a number--> ");
-			currentChoice = input.nextLine();
-			
-			if (currentChoice.equals("1")) {
+			printMainMenu();
+			mainMenuChoice = input.nextLine();
+			//Adding a new tune
+			if (mainMenuChoice.equals("1")) {
 				Tune newTune = userInputTune(input);
 				mainArray.add(newTune);
-			} else if (currentChoice.equals("2")) {
+			//Removing a tune
+			} else if (mainMenuChoice.equals("2")) {
 				System.out.print("\nWhat do you want to remove?: ");
 				String songName = input.nextLine();
 				
-				for (int i = 0; i < mainArray.size(); i++) {
-					if (mainArray.get(i).getSong() == songName) {
-						System.out.println("Removing " + mainArray.get(i).getSong());
-						mainArray.remove(mainArray.get(i));
-						break;
-					}
-				}
-			} else if (currentChoice.equals("3")) {
+				break;
+			} else if (mainMenuChoice.equals("3")) {
 				System.out.println("Search for Tune Details By Song Name: ");
 				String songName = input.nextLine();
 				for (int i = 0; i < mainArray.size(); i++) {
@@ -90,53 +81,50 @@ public class WorkBench {
 						break;
 					}
 				}
-			} else if (currentChoice.equals("4")) {
+			} else if (mainMenuChoice.equals("4")) {
 				exitCall();
-			} else if (currentChoice.equals("5")) {
+			} else if (mainMenuChoice.equals("5")) {
 				mainArray.printQuickTunes();
 				System.out.println("\n");
-			} else if (currentChoice.equals("6")) {
-				printOverallMenu();
+			} else if (mainMenuChoice.equals("6")) {
+				printMainMenu();
 			} else {
 				System.out.println("\nSorry I Couldnt Understand Your Answer!");	
 			}
 			
-		} while (!currentChoice.equals("4"));
-		
-		
-		
+		} while (!mainMenuChoice.equals("4"));	
 	}
-	//Prints the changes menu
-		public static void printOverallMenu() {
-			System.out.println("\n _______________________");
-			System.out.println("| Music Rating Database |");
-			System.out.println("|                       |");
-			System.out.println("|      --Options--      |");
-			System.out.println("|                       |");
-			System.out.println("|1: Add New Tune        |");
-			System.out.println("|2: Remove Tune         |");
-			System.out.println("|3: Get Tune(Index)     |");
-			System.out.println("|4: Exit --> Save/Write |");
-			System.out.println("|5: Print Quick View    |");
-			System.out.println("|_______________________|");
-		}
 	//Prints the Main Menu
-		public static void printMainMenu() {
-			System.out.println(" ________________________");
-			System.out.println("| Music Rating Database  |");
-			System.out.println("|                        |");
-			System.out.println("|      Version 1.0       |");
-			System.out.println("|                        |");
-			System.out.println("|                        |");
-			System.out.println("|      By: Ian Hank      |");
-			System.out.println("|                        |");
-			System.out.println("|     1: New Setup       |");
-			System.out.println("|     2: Quick Start     |");
-			System.out.println("|     3: About           |");
-			System.out.println("|     4: Exit            |");
-			System.out.println("|________________________|");
-		}
-		
+	public static void printMainMenu() {
+		System.out.println("\n _______________________");
+		System.out.println("| Music Rating Database |");
+		System.out.println("|                       |");
+		System.out.println("|      --Options--      |");
+		System.out.println("|                       |");
+		System.out.println("|1: Add New Tune        |");
+		System.out.println("|2: Remove Tune         |");
+		System.out.println("|3: Get Tune(Index)     |");
+		System.out.println("|4: Exit --> Save/Write |");
+		System.out.println("|5: Print Quick View    |");
+		System.out.println("|_______________________|");
+		System.out.print("|Please enter a number-->");
+	}
+	//Prints the Start Menu
+	public static void printStartMenu() {
+		System.out.println(" ________________________");
+		System.out.println("| Music Rating Database  |");
+		System.out.println("|                        |");
+		System.out.println("|      Version 1.0       |");
+		System.out.println("|                        |");
+		System.out.println("|                        |");
+		System.out.println("|      By: Ian Hank      |");
+		System.out.println("|                        |");
+		System.out.println("|     1: New Setup       |");
+		System.out.println("|     2: Quick Start     |");
+		System.out.println("|     3: About           |");
+		System.out.println("|     4: Exit            |");
+		System.out.println("|________________________|");
+	}	
 	//Gets user input to create a new Tune
 	public static Tune userInputTune(Scanner input) {
 		String song, album, author, genre;

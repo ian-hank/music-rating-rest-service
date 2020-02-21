@@ -3,8 +3,8 @@ import java.util.Iterator;
 public class TuneArray {
 	
 	//Constants
-	private final int DEFAULT_CAPACITY = 1;
-	private final int ELEMENTS_TO_ADD = 1;
+	private final int DEFAULT_CAPACITY = 1;			//Starting capacity of the array
+	private final int ELEMENTS_TO_ADD = 1;			//How many elements to add when full
 	
 	//Instance Variable
 	private static Tune[] data;
@@ -37,7 +37,7 @@ public class TuneArray {
 			if (data[i] == tune) {
 				data[i] = null;
 				int removed = i;
-				
+				//Shifting elements to leave no blank space
 				for (int j = removed; j != size() - 1; j++) {
 					data[j] = data[j + 1];
 				}
@@ -110,6 +110,7 @@ public class TuneArray {
 	//Ensures the array is not full and has room
 	public void ensureCapacity() {
 		if (size() >= data.length) {
+			//Creating new array and copying old elements into the new one
 			Tune[] newData = new Tune[size() + ELEMENTS_TO_ADD];
 			for (int i = 0; i < size(); i++) {
 				newData[i] = data[i];

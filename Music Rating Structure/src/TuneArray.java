@@ -37,12 +37,12 @@ public class TuneArray {
 			int removed = indexOf(tune);
 			data[removed] = null;
 			//Shifting elements to leave no blank space
-			for (int j = removed; j != size() - 1; j++) {
+			for (int j = removed; j < data.length - 1; j++) {
 				data[j] = data[j + 1];
 			}
+			size--;
 			return true;
 		} else {
-			size--;
 			return false;
 		}
 	}
@@ -105,6 +105,7 @@ public class TuneArray {
 				System.out.print("[" + data[i].getSong() + "] " );
 			}
 		}
+		System.out.println();
 	}
 
 	//Ensures the array is not full and has room

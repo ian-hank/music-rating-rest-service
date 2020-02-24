@@ -35,7 +35,8 @@ public class Menu {
 	}
 	//Prints the Start Menu
 	private static void printMainMenu() {
-		System.out.println("\n0) Add a tune");
+		System.out.println("\nPlease pick a number:");
+		System.out.println("0) Add a tune");
 		System.out.println("1) Remove a tune");
 		System.out.println("2) Search for a tune");
 		System.out.println("3) Print all tunes");
@@ -115,7 +116,8 @@ public class Menu {
 		//Adding the tune
 		tunes.add(newSong);
 		System.out.println("\nAdded Song\n" + newSong.tuneToString());
-		dotDelay(3);
+		pressEnterKeyToContinue();
+		input.nextLine();
 	}
 	
 	private static void removeTune() {
@@ -131,6 +133,7 @@ public class Menu {
 				tempTune = tunes.get(i);
 				tunes.remove(tunes.get(i));
 				System.out.println("Removed a song!\n" + tempTune.tuneToString());
+				pressEnterKeyToContinue();
 				return;
 			}
 		}
@@ -149,6 +152,7 @@ public class Menu {
 			if (tunes.get(i).getSong().equals(songName)) {
 				tempTune = tunes.get(i);
 				System.out.println("Showing Full Details\n" + tempTune.tuneToString());
+				pressEnterKeyToContinue();
 				return;
 			}
 		}
@@ -226,7 +230,7 @@ public class Menu {
 			objectIn.close();
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
-		}
+		}		
 		return tempArray;
 	}
 	
@@ -239,7 +243,7 @@ public class Menu {
 	
 	//Period Printing Thread Delay 
 	public static void dotDelay(int totalDots) {
-		for (int i = 0; i <= totalDots; i++) {
+		for (int i = 1; i <= totalDots; i++) {
 			try {
 				Thread.sleep(950);
 			} catch (InterruptedException e) {
@@ -247,5 +251,15 @@ public class Menu {
 			}
 			System.out.print(".");
 		}
-	}	
+	}
+	private static void pressEnterKeyToContinue() {
+		Scanner input = new Scanner(System.in);
+		System.out.print("\nPress Enter to continue...");
+		try {
+			input.nextLine();
+		}
+		catch (Exception e) {
+			
+		}
+	}
 }

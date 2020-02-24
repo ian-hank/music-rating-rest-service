@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 
 public class Menu {
 	//Constant Variables
+	Scanner input = new Scanner(System.in);
 	private final static String FILE_PATH = "myDatabase.bin";
 	private int LOWEST_CHOICE = 0;
 	private int HIGHEST_CHOICE = 5;
@@ -35,7 +36,7 @@ public class Menu {
 	}
 	//Prints the Start Menu
 	private static void printMainMenu() {
-		System.out.println("\nPlease pick a number:");
+		System.out.println("\nPlease pick a menu option!");
 		System.out.println("0) Add a tune");
 		System.out.println("1) Remove a tune");
 		System.out.println("2) Search for a tune");
@@ -238,6 +239,7 @@ public class Menu {
 	public void exitCall() {
 		System.out.print("Well, I hope to see you soon! Now Exiting");
 		dotDelay(3);
+		System.gc();
 		System.exit(0);
 	}
 	

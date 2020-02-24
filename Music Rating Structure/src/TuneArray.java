@@ -33,19 +33,18 @@ public class TuneArray {
 
 	//Removing specific Song in time O(n)
 	public boolean remove(Tune tune) {
-		for (int i = 0; i <= size(); i++) {
-			if (data[i] == tune) {
-				data[i] = null;
-				int removed = i;
-				//Shifting elements to leave no blank space
-				for (int j = removed; j != size() - 1; j++) {
-					data[j] = data[j + 1];
-				}
-				size--;
-				return true;
+		if (contains(tune)) {
+			int removed = indexOf(tune);
+			data[removed] = null;
+			//Shifting elements to leave no blank space
+			for (int j = removed; j != size() - 1; j++) {
+				data[j] = data[j + 1];
 			}
+			return true;
+		} else {
+			size--;
+			return false;
 		}
-		return false;
 	}
 
 	//Clearing the SongArray
@@ -67,7 +66,7 @@ public class TuneArray {
 
 	//Finds the index of a specific Song in time O(n)
 	public int indexOf(Tune tune) {
-		for (int i = 0; i <= size(); i++) {
+		for (int i = 0; i <= size() - 1; i++) {
 			if (data[i] == tune) {
 				return i;
 			}
@@ -100,6 +99,7 @@ public class TuneArray {
 
 	//Converts into readable strings
 	public void printQuickTunes() {
+		System.out.print("---> ");
 		for (int i = 0; i != size(); i++) {
 			if (data[i] != null) {
 				System.out.print("[" + data[i].getSong() + "] " );

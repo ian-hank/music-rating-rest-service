@@ -36,23 +36,23 @@ public class Rating implements Serializable {
 				} while (creativity < 0 || creativity > 10);
 				//Harmonics
 				do {
-				System.out.print("On a scale of 1-10 how would you rate the Melody/Harmonics/Beat of the song?: ");
-				harmonics = Double.parseDouble(input.nextLine());
+					System.out.print("On a scale of 1-10 how would you rate the Melody/Harmonics/Beat of the song?: ");
+					harmonics = Double.parseDouble(input.nextLine());
 				} while (harmonics < 0 || harmonics > 10);
 				//Lyrics
 				do {
-				System.out.print("On a scale of 1-10 how would you rate the Lyrics or Mood if it has no lyrics: ");
-				lyrics = Double.parseDouble(input.nextLine());
+					System.out.print("On a scale of 1-10 how would you rate the Lyrics or Mood if it has no lyrics: ");
+					lyrics = Double.parseDouble(input.nextLine());
 				} while (lyrics < 0 || lyrics > 10);
 				//Production
 				do {
-				System.out.print("On a scale of 1-10 how would you rate the Production/Design of the song: ");
-				production = Double.parseDouble(input.nextLine());
+					System.out.print("On a scale of 1-10 how would you rate the Production/Design of the song: ");
+					production = Double.parseDouble(input.nextLine());
 				} while (production < 0 || production > 10);
 				//Originality
 				do {
-				System.out.print("On a scale of 1-10 how would you rate the Originality/Uniqueness of the song?: ");
-				originality = Double.parseDouble(input.nextLine());
+					System.out.print("On a scale of 1-10 how would you rate the Originality/Uniqueness of the song?: ");
+					originality = Double.parseDouble(input.nextLine());
 				} while (originality < 0 || originality > 10);
 				//Exit Statement
 				answered = true;

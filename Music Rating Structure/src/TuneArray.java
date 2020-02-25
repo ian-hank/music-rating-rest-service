@@ -1,5 +1,7 @@
+//Needed Imports
 import java.util.Iterator;
 
+//Main Data Structure Class
 public class TuneArray {
 	
 	//Constants
@@ -7,8 +9,8 @@ public class TuneArray {
 	private final int ELEMENTS_TO_ADD = 1;			//How many elements to add when full
 	
 	//Instance Variable
-	private static Tune[] data;
-	private static int size;
+	private static Tune[] data;						//Array it will be stored within
+	private static int size;						//Size of the array, size() returns exact
 	
 	//Creating a new array for the Tunes
 	public TuneArray() {
@@ -71,6 +73,7 @@ public class TuneArray {
 				return i;
 			}
 		}
+		//Return this if not found
 		return -1;
 	}
 
@@ -81,7 +84,7 @@ public class TuneArray {
 
 	//Iterator to iterate through the SongArray
 	public Iterator<Tune> iterator() {
-		// TODO Auto-generated method stub
+		// TODO Finish Iterator for easier loops
 		return null;
 	}
 
@@ -105,6 +108,7 @@ public class TuneArray {
 				System.out.print("[" + data[i].getSong() + "] " );
 			}
 		}
+		//Newline
 		System.out.println();
 	}
 
@@ -117,7 +121,6 @@ public class TuneArray {
 				newData[i] = data[i];
 			}
 			data = newData;
-			
 		}
 	}
 
@@ -126,5 +129,25 @@ public class TuneArray {
 		if (index > size()) {
 			throw new IndexOutOfBoundsException("The specified index " + index + " is undefined within this structure.");
 		}	
+	}
+	
+	//Bubble sorts the array by rating
+	public void sortByRating() {
+		boolean sorted = false;
+		Tune temp;
+		
+		while(!sorted) {
+			sorted = true;
+			for (int i = 0; i < size() - 1; i++) {
+				//Bubble Sort so higher ratings are first
+				if (data[i].getFinalRating() < data[i + 1].getFinalRating()) {
+					temp = data[i];
+					data[i] = data[i + 1];
+					data[i + 1] = temp;
+					//Start Over
+					sorted = false;
+				}
+			}
+		}
 	}
 }

@@ -1,7 +1,7 @@
 # Music Rating Program
 
 ### Author: Ian C. Hank
-### Version: 1.0
+### Version: v0.1-alpha
 ### Still Updating: Yes
 
 
@@ -20,7 +20,7 @@ and then upgrade over time. After more thought I decided to go bigger with it an
 continue to update the program until I feel I am happy with it. 
 
 ### Version History:
-#### 1.0
+#### v0.1-alpha
 First fully functional design of the program is working. When the program is run it will open the binary file containing all
 your Tune objects importing them into a TuneArray(ArrayList implementation). Options for the users to manipulate their database were
 added as well as full input validation. The program has a number menu based approach. Once the user is done changing things they can

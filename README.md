@@ -1,7 +1,7 @@
 # Music Rating Program
 
 ### Author: Ian C. Hank
-### Version: 0.1
+### Version: 1.0
 ### Still Updating: Yes
 
 
@@ -19,3 +19,16 @@ thing just text based and quick for me to use with one large data structure. I t
 and then upgrade over time. After more thought I decided to go bigger with it and improve my skills in the meantime. I will 
 continue to update the program until I feel I am happy with it. 
 
+### Version History:
+#### 1.0
+First fully functional design of the program is working. When the program is run it will open the binary file containing all
+your Tune objects importing them into a TuneArray(ArrayList implementation). Options for the users to manipulate their database were
+added as well as full input validation. The program has a number menu based approach. Once the user is done changing things they can
+save their database and exit where it will rewrite all objects to the file.
+##### Options Added:
+###### -Add/Remove Tunes
+###### -Search for full details of a Tune
+###### -Print All Tunes (Unsorted)
+###### -Print All Tunes by Highest Rating First
+###### -Clear All Tunes
+###### -Exit and Save

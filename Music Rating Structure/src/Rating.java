@@ -13,6 +13,7 @@ public class Rating implements Serializable {
 	private final double PRODUCTION_WEIGHT = 0.7;
 	private final double ORIGINALITY_WEIGHT = 0.6;
 	
+	//Instance Variables
 	private double finalRating;				//Overall Rating of the song
 	private double creativity;				//Creativity rating or potential impact of the song on the industry
 	private double harmonics;				//Rating for main beat/bass line/melody or whatever it is
@@ -24,17 +25,42 @@ public class Rating implements Serializable {
 	public Rating() {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
-		System.out.print("On a scale of 1-10 how would you rate the Creativity/Potential impact of the song?: ");
-		creativity = input.nextDouble();
-		System.out.print("On a scale of 1-10 how would you rate the Melody/Harmonics/Beat of the song?: ");
-		harmonics = input.nextDouble();
-		System.out.print("On a scale of 1-10 how would you rate the Lyrics or Mood if it has no lyrics: ");
-		lyrics = input.nextDouble();
-		System.out.print("On a scale of 1-10 how would you rate the Production/Design of the song: ");
-		production = input.nextDouble();
-		System.out.print("On a scale of 1-10 how would you rate the Originality/Uniqueness of the song?: ");
-		originality = input.nextDouble();
-		
+		//User Input checking for Double
+		boolean answered = false;
+		while(!answered) {
+			try {
+				//Creativity
+				do {
+					System.out.print("On a scale of 1-10 how would you rate the Creativity/Potential impact of the song?: ");
+					creativity = Double.parseDouble(input.nextLine());
+				} while (creativity < 0 || creativity > 10);
+				//Harmonics
+				do {
+				System.out.print("On a scale of 1-10 how would you rate the Melody/Harmonics/Beat of the song?: ");
+				harmonics = Double.parseDouble(input.nextLine());
+				} while (harmonics < 0 || harmonics > 10);
+				//Lyrics
+				do {
+				System.out.print("On a scale of 1-10 how would you rate the Lyrics or Mood if it has no lyrics: ");
+				lyrics = Double.parseDouble(input.nextLine());
+				} while (lyrics < 0 || lyrics > 10);
+				//Production
+				do {
+				System.out.print("On a scale of 1-10 how would you rate the Production/Design of the song: ");
+				production = Double.parseDouble(input.nextLine());
+				} while (production < 0 || production > 10);
+				//Originality
+				do {
+				System.out.print("On a scale of 1-10 how would you rate the Originality/Uniqueness of the song?: ");
+				originality = Double.parseDouble(input.nextLine());
+				} while (originality < 0 || originality > 10);
+				//Exit Statement
+				answered = true;
+			}
+			catch (NumberFormatException e) {
+				System.out.println("Please enter only double values for these ratings(Starting Over)...");
+			}
+		}
 		finalRating = calcFinalRating(creativity, harmonics, lyrics, production, originality);
 	}
 	
@@ -62,7 +88,7 @@ public class Rating implements Serializable {
 	//Gets the harmonics rating of the song
 	public double getHarmonics() {
 		return this.harmonics;
-		}
+	}
 		
 	//Gets the lyrics rating of the song
 	public double getLyrics() {

@@ -1,11 +1,12 @@
+//Needed Imports
 import java.io.Serializable;
 
 //Class containing highest object "Tune"
-
 public class Tune implements Serializable{
 	
 	private static final long serialVersionUID = 1447131601199710015L;
 	
+	//Instance Variables
 	private String song;			//Name of the Song
 	private String album;			//Name of the Album
 	private String author;			//Name of the Author
@@ -24,8 +25,9 @@ public class Tune implements Serializable{
 	}
 	
 	//Creating new Tune through a painful initialization process
-	public Tune(String song, String album, String author, String genre, int length, Rating rating,
-			double creativity, double harmonics, double lyrics, double production, double originality) {
+	public Tune(String song, String album, String author, String genre, 
+			int length, Rating rating, double creativity, double harmonics, 
+			double lyrics, double production, double originality) {
 		this.song = song;
 		this.album = album;
 		this.author = author;
@@ -69,6 +71,7 @@ public class Tune implements Serializable{
 		this.song = name;
 		return this.song == name;
 	}
+	
 	//Sets the Tunes Album name
 	public boolean setAlbum(String name) {
 		this.album = name;
@@ -86,7 +89,6 @@ public class Tune implements Serializable{
 		this.genre = name;
 		return this.genre == name;
 	}
-	
 	
 	//Sets the Tunes Length in seconds
 	public boolean setLength(int time) {

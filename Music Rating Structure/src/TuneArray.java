@@ -100,12 +100,20 @@ public class TuneArray {
 		return size;
 	}
 
-	//Converts into readable strings
+	//Converts into readable strings in a nice readable text display of their song names
 	public void printQuickTunes() {
 		System.out.print("---> ");
+		//Displaying below arrows to keep it inline if it is newlining
+		if(size() > 7) {
+			System.out.println();
+		}
 		for (int i = 0; i != size(); i++) {
 			if (data[i] != null) {
 				System.out.print("[" + data[i].getSong() + "] " );
+				//To avoid the 0 printing newline automatically
+				if(((i+1) % 7) == 0) {
+					System.out.println();
+				}
 			}
 		}
 		//Newline
@@ -139,7 +147,7 @@ public class TuneArray {
 		while(!sorted) {
 			sorted = true;
 			for (int i = 0; i < size() - 1; i++) {
-				//Bubble Sort so higher ratings are first
+				//Bubble Sort so higher ratings are first or swapped
 				if (data[i].getFinalRating() < data[i + 1].getFinalRating()) {
 					temp = data[i];
 					data[i] = data[i + 1];

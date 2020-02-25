@@ -13,7 +13,7 @@ public class Menu {
 	Scanner input = new Scanner(System.in);
 	private final static String FILE_PATH = "myDatabase.bin";
 	private int LOWEST_CHOICE = 0;
-	private int HIGHEST_CHOICE = 6;
+	private int HIGHEST_CHOICE = 7;
 	
 	//Instance Variables
 	boolean exitChoice;
@@ -37,22 +37,40 @@ public class Menu {
 		System.out.println("+-------------------------------------------+");
 	}
 	
+	private static void printRatingHeader() {
+		System.out.println("|EXPLANATION: This is how the ratings for songs are to based on.");
+		System.out.println("|");
+		System.out.println("|----CREATIVITY: The potential impact the song has on the industry or influence.");
+		System.out.println("|");
+		System.out.println("|----HARMONICS: Quality for main beat/bassline/melody/instrumental or whatever it may be.");
+		System.out.println("|");
+		System.out.println("|----LYRICS/MOOD: Overall Mood and Lyrics of a song. If the song has no lyrics just mood is used.");
+		System.out.println("|");
+		System.out.println("|----PRODUCTION/DESIGN: Finishing quality and design of the tune and how well it was produced.");
+		System.out.println("|");
+		System.out.println("|----ORIGINIALITY/UNIQUENESS: How alike the tune is to others. Is it new and fresh and follows an artists style.");
+		System.out.println("|");
+		System.out.println("|OVERALL: Each Rating has their own weight to get a FINAL RATING OUT OF 40 POINTS!");
+	}
+	
 	//Prints the Options Menu
 	private static void printMainMenu() {
 		System.out.println("\nPlease pick a menu option!");
-		System.out.println("0) Add a tune");
-		System.out.println("1) Remove a tune");
-		System.out.println("2) Search for a tune");
-		System.out.println("3) Print all tunes");
-		System.out.println("4) Print all tunes by rating");
-		System.out.println("5) Clear all tunes");
-		System.out.println("6) Save and Exit");
-		//Change Constants at top if menu is changed
+		System.out.println("0) ADD a tune");
+		System.out.println("1) REMOVE a tune");
+		System.out.println("2) SEARCH for more details");
+		System.out.println("3) PRINT all tunes");
+		System.out.println("4) PRINT all tunes by rating");
+		System.out.println("5) CLEAR all tunes");
+		System.out.println("6) SAVE");
+		System.out.println("7) SAVE and EXIT");
+		//Change Constants (LOWEST_CHOICE & HIGHEST_CHOICE) at top if menu is changed
 	}	
 	
 	//Runs and maintains the menu
 	public void runMainMenu() {
 		printHeader();
+		printRatingHeader();
 		while (!exitChoice) {
 			printMainMenu();
 			int choice = getMenuInput();
@@ -82,8 +100,18 @@ public class Menu {
 			clearTunes();
 			break;
 		case 6:
-			exitChoice = true;
 			//Writing to the file to save
+			System.out.print("Saving");
+			dotDelay(3);
+			try {
+				writeToFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			System.out.println("Saved!");
+			break;
+		case 7:
+			exitChoice = true;
 			try {
 				writeToFile();
 			} catch (IOException e) {
@@ -198,12 +226,16 @@ public class Menu {
 	
 	//Prints the tunes in order of rating
 	private void printTunesRating() {
+		//Sorting Tunes
 		tunes.sortByRating();
 		for (int i = 0; i <= tunes.size() - 1; i++) {
 			Tune temp = tunes.get(i);
 			//Formatting to two decimals and printing
 			String rating = String.format("%.2f", temp.getFinalRating());
-			System.out.println(temp.getSong() + "    [" + temp.getAuthor() + "]:" + rating);
+			//TODO Maybe make charRepeat variables to make it more readable
+			System.out.println(temp.getSong() + characterRepeat(' ', 20-temp.getSong().length()) + "[" + temp.getAuthor() + "]" 
+											  + characterRepeat('-',20-temp.getAuthor().length()) 
+											  + ">" + rating);
 		}
 	}
 	
@@ -215,7 +247,7 @@ public class Menu {
 		//Validating input for an int
 		while (choice < LOWEST_CHOICE || choice > HIGHEST_CHOICE) {
 			try {
-				System.out.print("Please enter your choice: ");
+				System.out.print("Please enter your choice(" + LOWEST_CHOICE + "-" + HIGHEST_CHOICE + "): ");
 				choice = Integer.parseInt(input.nextLine());
 			}
 			catch (NumberFormatException e) {
@@ -234,7 +266,7 @@ public class Menu {
 		for (int i = 0; i < tunes.size(); i++) {
 			objOut.writeObject(tunes.get(i));	
 		}
-		//Adds a tune to the end with a negative one to signal the end of the file
+		//Adds a tune to the end with a -1 length to signal the end of the file
 		Tune endTune = new Tune();
 		endTune.setSong("END OF FILE");
 		endTune.setLength(-1);
@@ -288,7 +320,7 @@ public class Menu {
 	public static void dotDelay(int totalDots) {
 		for (int i = 1; i <= totalDots; i++) {
 			try {
-				Thread.sleep(950);
+				Thread.sleep(900);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -306,5 +338,12 @@ public class Menu {
 		catch (Exception e) {
 			System.err.println("Something unexepected has happened.");
 		}
+	}
+	private static String characterRepeat(char c, int count) {
+		String spacing = "";
+		for (int j = 0; j <= count; j++) {
+			spacing += c;
+		}
+		return spacing;
 	}
 }

@@ -68,7 +68,7 @@ public class TuneArray {
 
 	//Finds the index of a specific Song in time O(n)
 	public int indexOf(Tune tune) {
-		for (int i = 0; i <= size() - 1; i++) {
+		for (int i = 0; i < size(); i++) {
 			if (data[i] == tune) {
 				return i;
 			}

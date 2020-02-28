@@ -68,7 +68,7 @@ public class Menu {
 	}	
 	
 	//Runs and maintains the menu
-	public void runMainMenu() {
+	public void runMainMenu() throws IOException {
 		printHeader();
 		printRatingHeader();
 		while (!exitChoice) {
@@ -79,7 +79,7 @@ public class Menu {
 	}
 	
 	//Performs task chosen by user from menu
-	private void mainMenuAction(int choice) {
+	private void mainMenuAction(int choice) throws IOException {
 		switch(choice) {
 		case 0:
 			addTune();
@@ -100,23 +100,11 @@ public class Menu {
 			clearTunes();
 			break;
 		case 6:
-			//Writing to the file to save
-			System.out.print("Saving");
-			dotDelay(3);
-			try {
-				writeToFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			System.out.println("Saved!");
+			quickSave();
 			break;
 		case 7:
 			exitChoice = true;
-			try {
-				writeToFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			writeToFile();
 			//Exiting and Closing Resources
 			exitCall();
 		default:
@@ -239,6 +227,19 @@ public class Menu {
 		}
 	}
 	
+	//Allows the user to save quickly without having to exit
+	private void quickSave() {
+		//Writing to the file to save
+		System.out.print("Saving");
+		dotDelay(3);
+		try {
+			writeToFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Saved!");
+	}
+	
 	//Gets user input to create a new Tune
 	public int getMenuInput() {
 		Scanner input = new Scanner(System.in);
@@ -339,6 +340,8 @@ public class Menu {
 			System.err.println("Something unexepected has happened.");
 		}
 	}
+	
+	//Method to repeat a character n times, for quick println spacing
 	private static String characterRepeat(char c, int count) {
 		String spacing = "";
 		for (int j = 0; j <= count; j++) {

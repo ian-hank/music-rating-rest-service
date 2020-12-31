@@ -3,7 +3,6 @@ package com.ichprograms.rating.music.springmongoapi.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-//Imports
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -15,13 +14,13 @@ import lombok.ToString;
 @Document(collection = "Tune")
 public class Tune {
 	@Id
-	private int id;
+	private int id;					//Tunes _id
 	private String song;			//Name of the Song
 	private String album;			//Name of the Album
 	private String author;			//Name of the Author
 	private String genre;			//Name of the Genre
-	private int month;
-	private int year;
+	private int month;				//Month Released
+	private int year;				//Year Released
 	
 	//Gets the Tunes ID
 	public int getId() {

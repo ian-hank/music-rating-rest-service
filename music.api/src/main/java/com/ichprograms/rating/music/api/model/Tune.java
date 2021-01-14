@@ -15,13 +15,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Tune {
 	
 	@Id
-	private int id;					//Tunes ID
+	private int id;					//Tunes UID
 	private String song;			//Name of the Song
 	private String album;			//Name of the Album
 	private String author;			//Name of the Author
 	private String genre;			//Name of the Genre
+	
 	private int month;				//Month Released
 	private int year;				//Year Released
+	
+	private long ratingCount = 0;
+	private double overallRating;
 	
 	//Gets the Tunes ID
 	public int getId() {
@@ -92,5 +96,22 @@ public class Tune {
 	public boolean setYear(int name) {
 		this.year = name;
 		return this.year == name;
+	}
+	
+	//TODO Fix eclipse generated methods
+	public double getOverallRating() {
+		return overallRating;
+	}
+
+	public void setOverallRating(double overallRating) {
+		this.overallRating = overallRating;
+	}
+
+	public long getRatingCount() {
+		return ratingCount;
+	}
+
+	public void setRatingCount(long ratingCount) {
+		this.ratingCount = ratingCount;
 	}	
 }

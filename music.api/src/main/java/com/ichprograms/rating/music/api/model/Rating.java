@@ -14,20 +14,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "Rating")
 public class Rating {
 	
-	//Constant Variables
-	private final double CREATIVITY_WEIGHT = 1.0;
-	private final double HARMONICS_WEIGHT = 0.9;
-	private final double LYRICS_WEIGHT = 0.8;
-	private final double PRODUCTION_WEIGHT = 0.7;
-	private final double ORIGINALITY_WEIGHT = 0.6;
-	
 	@Id
-	private int id;							//Rating _id
-	private int userId;						//User Id
-	private int tuneId;						//Matching Tune Id
+	private int id;							//Rating UID
+	private int tuneId;						//Matching Tune UID
+	private int user;						//User ID
 
-	
-	//Instance Variables
 	private double finalRating;				//Overall Rating of the song
 	private double creativity;				//Creativity rating or potential impact of the song on the industry
 	private double harmonics;				//Rating for main beat/bass line/melody or whatever it is
@@ -41,8 +32,14 @@ public class Rating {
 	}
 	
 	//Gets user's Id
-	public int getUserId() {
-		return userId;
+	public int getUser() {
+		return user;
+	}
+	
+	//Set user's Id
+	public boolean setUser(int user) {
+		this.user = user;
+		return this.user == user;
 	}
 	
 	//Gets tune's Id
@@ -129,6 +126,13 @@ public class Rating {
 	
 	//Calculates the final overall rating with the sub scores given or initialized
 	public double calcFinalRating(double creativity, double harmonics, double lyrics, double production, double originality) {
+		//Constant Variables for Rating's components
+		final double CREATIVITY_WEIGHT = 1.0;
+		final double HARMONICS_WEIGHT = 0.9;
+		final double LYRICS_WEIGHT = 0.8;
+		final double PRODUCTION_WEIGHT = 0.7;
+		final double ORIGINALITY_WEIGHT = 0.6;
+		
 		creativity = creativity * CREATIVITY_WEIGHT;
 		harmonics = harmonics * HARMONICS_WEIGHT;
 		lyrics = lyrics * LYRICS_WEIGHT;

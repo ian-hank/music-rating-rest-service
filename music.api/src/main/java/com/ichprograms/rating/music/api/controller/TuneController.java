@@ -18,31 +18,40 @@ import com.ichprograms.rating.music.api.repository.TuneRepository;
 public class TuneController {
 	
 	@Autowired
-	private TuneRepository repository;
+	private TuneRepository tuneRepository;
 	  
-	//POST Tune request
-	@PostMapping("/addTune")
+	//POST Methods
+	@PostMapping("/songs/add") //Adds a new song
 	public String saveTune(@RequestBody Tune tune) {
-		repository.save(tune);
-		return "Added tune with id : " + tune.getId();
+		tuneRepository.save(tune);
+		
+		return "Added song with id : " + tune.getId();
 	}
 	 
-	//GET all Tunes request
-	@GetMapping("/findAllTunes")
+	//GET Methods
+	@GetMapping("/findAll/tunes/") //Get all songs in the collection
 	public List<Tune> getTunes() {
-	   return repository.findAll();
+		List<Tune> tunes = this.tuneRepository.findAll();
+		
+	   return tunes;
 	}
 	   
-	//GET Tune by id request
-	@GetMapping("/findAllTunes/{id}")
+	@GetMapping("/findAll/tunes/id/{id}") //Get all songs with UID
 	public Optional<Tune> getTune(@PathVariable int id) {
-	    return repository.findById(id);
+	    return tuneRepository.findById(id);
 	}
 	  
-	//DELETE Tune by id request
-	@DeleteMapping("/delete/{id}")
+	//PATCH Methods
+	//TODO Put a JSON Patch here eventually to make updating ratings easier
+			
+	//PUT Methods
+	//TODO Put methods for inserting. Remove update-PUT's if patch method is in
+	
+	//DELETE Methods
+	@DeleteMapping("/tunes/delete/id/{id}") //Delete song by its UID
 	public String deleteTune(@PathVariable int id) {
-	    repository.deleteById(id);
-	    return "Tune deleted with id : " + id;
+	    tuneRepository.deleteById(id);
+	    
+	    return "Song deleted with id : " + id;
 	}
 }

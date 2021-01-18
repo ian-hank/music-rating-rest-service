@@ -15,131 +15,127 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Rating {
 	
 	@Id
-	private int id;							//Rating UID
-	private int tuneId;						//Matching Tune UID
-	private int user;						//User ID
+	private String id;							//Rating UID
+	private String tuneId;						//Matching song UID
+	private String user;						//User UID
 
+	private double songwriting;
+	private double audioProduction;
+	private double consistency;
+	private double memorability;
+	private double uniqueness;
+	
 	private double finalRating;				//Overall Rating of the song
-	private double creativity;				//Creativity rating or potential impact of the song on the industry
-	private double harmonics;				//Rating for main beat/bass line/melody or whatever it is
-	private double lyrics;					//Rating for the lyrics if the song has none a mood rating felt throughout song
-	private double production;				//Overall rating for production and finishing design of the song
-	private double originality;				//Originality or Uniqueness of the song
 	
 	//Gets document Id
-	public int getId() {
-		return id;
+	public String getId() {
+		return this.id;
+	}
+	
+	//Gets songs's Id
+	public String getTuneId() {
+		return this.tuneId;
 	}
 	
 	//Gets user's Id
-	public int getUser() {
-		return user;
+	public String getUser() {
+		return this.user;
 	}
 	
-	//Set user's Id
-	public boolean setUser(int user) {
-		this.user = user;
-		return this.user == user;
+	//Gets the songwriting rating of the song
+	public double getSongwriting() {
+		return this.songwriting;
 	}
-	
-	//Gets tune's Id
-	public int getTuneId() {
-		return tuneId;
+
+	//Gets the audio production rating of the song
+	public double getaudioProduction() {
+		return this.audioProduction;
+	}
+		
+	//Gets the consistency rating of the song
+	public double getConsistency() {
+		return this.consistency;
+	}
+		
+	//Gets the memorability rating of the song
+	public double getMemorability() {
+		return this.memorability;
+	}
+		
+	//Gets the uniqueness rating of the song
+	public double getUniqueness() {
+		return this.uniqueness;
 	}
 	
 	//Gets final Rating of the song
-	public double getRating() {
-		return finalRating;
+	public double getFinalRating() {
+		return this.finalRating;
 	}
 	
-	//Gets the creativity rating of the song
-	public double getCreativity() {
-		return this.creativity;
+	//Sets the songwriting rating of the song
+	public boolean setSongwriting(double rating) {
+		this.songwriting = rating;
+		finalRating = calcFinalRating(songwriting, audioProduction, consistency, memorability, uniqueness);
+		return this.songwriting == songwriting;
 	}
-
-	//Gets the harmonics rating of the song
-	public double getHarmonics() {
-		return this.harmonics;
-	}
-		
-	//Gets the lyrics rating of the song
-	public double getLyrics() {
-		return this.lyrics;
-	}
-		
-	//Gets the production rating of the song
-	public double getProduction() {
-		return this.production;
-	}
-		
-	//Gets the originality rating of the song
-	public double getOriginality() {
-		return this.originality;
+			
+	//Sets the audio production rating of the song
+	public boolean setAudioProduction(double rating) {
+		this.audioProduction = rating;
+		finalRating = calcFinalRating(songwriting, audioProduction, consistency, memorability, uniqueness);
+		return this.audioProduction == rating;
 	}
 	
-	//Sets the creativity rating of the song
-	public boolean setCreativity(double rating) {
-		this.creativity = rating;
-		finalRating = calcFinalRating(creativity, harmonics, lyrics, production, originality);
-		return this.creativity == creativity;
+	//Sets the consistency rating of the song
+	public boolean setConsistency(double rating) {
+		this.consistency = rating;
+		finalRating = calcFinalRating(songwriting, audioProduction, consistency, memorability, uniqueness);
+		return this.consistency == rating;
 	}
 			
-	//Sets the harmonics rating of the song
-	public boolean setHarmonics(double rating) {
-		this.harmonics = rating;
-		finalRating = calcFinalRating(creativity, harmonics, lyrics, production, originality);
-		return this.harmonics == rating;
-	}
-	
-	//Sets the lyrics of the song
-	public boolean setLyrics(double rating) {
-		this.lyrics = rating;
-		finalRating = calcFinalRating(creativity, harmonics, lyrics, production, originality);
-		return this.lyrics == rating;
+	//Sets the memorability rating of the song
+	public boolean setMemorability(double rating) {
+		this.memorability = rating;
+		finalRating = calcFinalRating(songwriting, audioProduction, consistency, memorability, uniqueness);
+		return this.memorability == rating;
 	}
 			
-	//Sets the production of the song
-	public boolean setProduction(double rating) {
-		this.production = rating;
-		finalRating = calcFinalRating(creativity, harmonics, lyrics, production, originality);
-		return this.production == rating;
-	}
-			
-	//Sets the originality of the song
-	public boolean setOriginality(double rating) {
-		this.originality = rating;
-		finalRating = calcFinalRating(creativity, harmonics, lyrics, production, originality);
-		return this.originality == rating;
+	//Sets the uniqueness rating of the song
+	public boolean setUniqueness(double rating) {
+		this.uniqueness = rating;
+		finalRating = calcFinalRating(songwriting, audioProduction, consistency, memorability, uniqueness);
+		return this.uniqueness == rating;
 	}
 
 	//Sets the rating of the song
-	public boolean setRating(double creativity, double harmonics, double lyrics, double production, double originality) {
-		this.creativity = creativity;
-		this.harmonics = harmonics;
-		this.lyrics = lyrics;
-		this.production = production;
-		this.originality = originality;
+	public boolean setRating(double songwriting, double audioProduction, double consistency, double memorability, double uniqueness) {
+		this.songwriting = songwriting;
+		this.audioProduction = audioProduction;
+		this.consistency = consistency;
+		this.memorability = memorability;
+		this.uniqueness = uniqueness;
 		
-		finalRating = calcFinalRating(creativity, harmonics, lyrics, production, originality);
-		return calcFinalRating(creativity, harmonics, lyrics, production, originality) == finalRating;
+		finalRating = calcFinalRating(songwriting, audioProduction, consistency, memorability, uniqueness);
+		return calcFinalRating(songwriting, audioProduction, consistency, memorability, uniqueness) == finalRating;
 	}
 	
 	//Calculates the final overall rating with the sub scores given or initialized
-	public double calcFinalRating(double creativity, double harmonics, double lyrics, double production, double originality) {
+	public double calcFinalRating(double songwriting, double audioProduction, double consistency, double memorability, double uniqueness) {
+		
 		//Constant Variables for Rating's components
-		final double CREATIVITY_WEIGHT = 1.0;
-		final double HARMONICS_WEIGHT = 0.9;
-		final double LYRICS_WEIGHT = 0.8;
-		final double PRODUCTION_WEIGHT = 0.7;
-		final double ORIGINALITY_WEIGHT = 0.6;
+		final double SONGWRITING_WEIGHT = 1.0;
+		final double AUDIO_PRODUCTION_WEIGHT = 0.9;
+		final double CONSISTENCY_WEIGHT = 0.8;
+		final double MEMORABILITY_WEIGHT = 0.7;
+		final double UNIQUENESS_WEIGHT = 0.6;
 		
-		creativity = creativity * CREATIVITY_WEIGHT;
-		harmonics = harmonics * HARMONICS_WEIGHT;
-		lyrics = lyrics * LYRICS_WEIGHT;
-		production = production * PRODUCTION_WEIGHT;
-		originality = originality * ORIGINALITY_WEIGHT;
+		songwriting = songwriting * SONGWRITING_WEIGHT;
+		audioProduction = audioProduction * AUDIO_PRODUCTION_WEIGHT;
+		consistency = consistency * CONSISTENCY_WEIGHT;
+		memorability = memorability * MEMORABILITY_WEIGHT;
+		uniqueness = uniqueness * UNIQUENESS_WEIGHT;
 		
-		double overall = creativity + harmonics + lyrics + production + originality;
+		double overall = songwriting + audioProduction + consistency + memorability + uniqueness;
 		return overall;
 	}
 }

@@ -11,33 +11,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ichprograms.rating.music.api.model.Tune;
-import com.ichprograms.rating.music.api.repository.TuneRepository;
+import com.ichprograms.rating.music.api.model.Song;
+import com.ichprograms.rating.music.api.repository.SongRepository;
 
 @RestController
-public class TuneController {
+public class SongController {
 	
 	@Autowired
-	private TuneRepository tuneRepository;
+	private SongRepository tuneRepository;
 	  
 	//POST Methods
 	@PostMapping("/songs/add") //Adds a new song
-	public String saveTune(@RequestBody Tune tune) {
+	public String saveTune(@RequestBody Song tune) {
 		tuneRepository.save(tune);
 		
 		return "Added song with id : " + tune.getId();
 	}
 	 
 	//GET Methods
-	@GetMapping("/findAll/tunes/") //Get all songs in the collection
-	public List<Tune> getTunes() {
-		List<Tune> tunes = this.tuneRepository.findAll();
+	@GetMapping("/findAll/songs/") //Get all songs in the collection
+	public List<Song> getTunes() {
+		List<Song> tunes = this.tuneRepository.findAll();
 		
 	   return tunes;
 	}
 	   
-	@GetMapping("/findAll/tunes/id/{id}") //Get all songs with UID
-	public Optional<Tune> getTune(@PathVariable int id) {
+	@GetMapping("/findAll/songs/id/{id}") //Get all songs with UID
+	public Optional<Song> getTune(@PathVariable String id) {
 	    return tuneRepository.findById(id);
 	}
 	  
@@ -49,7 +49,7 @@ public class TuneController {
 	
 	//DELETE Methods
 	@DeleteMapping("/tunes/delete/id/{id}") //Delete song by its UID
-	public String deleteTune(@PathVariable int id) {
+	public String deleteTune(@PathVariable String id) {
 	    tuneRepository.deleteById(id);
 	    
 	    return "Song deleted with id : " + id;

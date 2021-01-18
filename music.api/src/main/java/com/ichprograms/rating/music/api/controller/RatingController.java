@@ -17,54 +17,54 @@ import com.ichprograms.rating.music.api.repository.RatingRepository;
 @RestController
 public class RatingController {
 		
-		@Autowired
-		private RatingRepository ratingRepository;
+	@Autowired
+	private RatingRepository ratingRepository;
 		
-		//POST Methods
-		@PostMapping("/ratings/add") //Adds a new rating document
-		public String saveRating(@RequestBody Rating rating) {
-			ratingRepository.save(rating);
-			return "Added rating under user : " + rating.getUser();
-		}
+	//POST Methods
+	@PostMapping("/ratings/add") //Adds a new rating document
+	public String saveRating(@RequestBody Rating rating) {
+		ratingRepository.save(rating);
+		return "Added rating under user : " + rating.getUser();
+	}
 		
-		//GET Methods
-		@GetMapping("/findAll/ratings") //Gets every single rating
-		public List<Rating> getAll() { 
-			List<Rating> ratings = this.ratingRepository.findAll();
+	//GET Methods
+	@GetMapping("/findAll/ratings") //Gets every single rating
+	public List<Rating> getAll() { 
+		List<Rating> ratings = this.ratingRepository.findAll();
 			
-			return ratings;
-		}
+	return ratings;
+	}
 		
-		@GetMapping("/findAll/ratings/id/{id}") //Gets a rating by UID 
-		public Optional<Rating> getRatingById(@PathVariable int id) {
-			return ratingRepository.findById(id);	
-		}
+	@GetMapping("/findAll/ratings/id/{id}") //Gets a rating by UID 
+	public Optional<Rating> getRatingById(@PathVariable String id) {
+		return ratingRepository.findById(id);	
+	}
 
-		@GetMapping("/findAll/ratings/user/{user}") //Gets specified user's ratings
-		public List<Rating> getAllByUser(@PathVariable int user) {
-			List<Rating> userRatings = this.ratingRepository.findAllByUser(user);
+	@GetMapping("/findAll/ratings/user/{user}") //Gets specified user's ratings
+	public List<Rating> getAllByUserId(@PathVariable String userId) {
+		List<Rating> userRatings = this.ratingRepository.findAllByUserId(userId);
 			
-			return userRatings;
-		}
+		return userRatings;
+	}
 		
-		@GetMapping("/findAll/ratings/songId/{tuneId}") //Gets all ratings for a specific song
-		public List<Rating> getAllByTuneId(@PathVariable int tuneId) {
-			List<Rating> songRatings = this.ratingRepository.findAllByTuneId(tuneId);
+	@GetMapping("/findAll/ratings/songId/{tuneId}") //Gets all ratings for a specific song
+	public List<Rating> getAllBySongId(@PathVariable String songId) {
+		List<Rating> songRatings = this.ratingRepository.findAllBySongId(songId);
 			
-			return songRatings;
-		}
+		return songRatings;
+	}
 		
-		//PATCH Methods
-		//TODO Put a JSON Patch here to make updating ratings easier
+	//PATCH Methods
+	//TODO Put a JSON Patch here to make updating ratings easier
 		
-		//PUT Methods
-		//TODO Put methods for inserting. Remove update-PUT's if patch method is in
+	//PUT Methods
+	//TODO Put methods for inserting. Remove update-PUT's if patch method is in
 		
-		//DELETE Methods
-		@DeleteMapping("/ratings/delete/id/{id}") //Delete rating by UID
-		public String deleteRating(@PathVariable int id) {
-			ratingRepository.deleteById(id);
-			return "Rating deleted with id : " + id;
-		}
+	//DELETE Methods
+	@DeleteMapping("/ratings/delete/id/{id}") //Delete rating by UID
+	public String deleteRating(@PathVariable String id) {
+		ratingRepository.deleteById(id);
 		
+		return "Rating deleted with id : " + id;
+	}
 }

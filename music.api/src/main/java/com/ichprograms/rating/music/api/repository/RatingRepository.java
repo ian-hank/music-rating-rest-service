@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 import com.ichprograms.rating.music.api.model.Rating;
 
 @Repository
-public interface RatingRepository extends MongoRepository<Rating, Integer>{
+public interface RatingRepository extends MongoRepository<Rating, String>{
 
-	List<Rating> findAllByUser(int user);
+	List<Rating> findAllByUserId(String user);
 
-	List<Rating> findAllByTuneId(int tuneId);
+	List<Rating> findAllBySongId(String tuneId);
 
 }

@@ -10,8 +10,8 @@ import com.ichprograms.rating.music.api.model.Rating;
 @Repository
 public interface RatingRepository extends MongoRepository<Rating, String>{
 
-	List<Rating> findAllByUserId(String user);
+	List<Rating> findAllByUserId(String userId);
 
-	List<Rating> findAllBySongId(String tuneId);
+	List<Rating> findAllBySongId(String songId);
 
 }

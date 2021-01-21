@@ -3,21 +3,13 @@ package com.ichprograms.rating.music.api.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-//TODO Import Lombok to auto-generate setters and getters
-//import lombok.Getter;
-//import lombok.Setter;
-//import lombok.ToString;
-
-//@Getter
-//@Setter
-//@ToString
 @Document(collection = "Rating")
 public class Rating {
 	
 	@Id
 	private String id;							//Rating UID
-	private String tuneId;						//Matching song UID
-	private String user;						//User UID
+	private String songId;						//Matching song UID
+	private String userId;						//User UID
 
 	private double songwriting;
 	private double audioProduction;
@@ -33,13 +25,13 @@ public class Rating {
 	}
 	
 	//Gets songs's Id
-	public String getTuneId() {
-		return this.tuneId;
+	public String getSongId() {
+		return this.songId;
 	}
 	
 	//Gets user's Id
 	public String getUser() {
-		return this.user;
+		return this.userId;
 	}
 	
 	//Gets the songwriting rating of the song

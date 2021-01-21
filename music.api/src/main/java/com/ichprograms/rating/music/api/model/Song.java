@@ -1,37 +1,51 @@
 package com.ichprograms.rating.music.api.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-//TODO Import Lombok to auto-generate setters and getters
-//import lombok.Getter;
-//import lombok.Setter;
-//import lombok.ToString;
-
-//@Getter
-//@Setter
-//@ToString
 @Document(collection = "Song")
 public class Song {
 	
 	@Id
-	private String id;					//Songs UID
+	private String id;				//Songs UID
 	
 	private String song;			//Name of the Song
 	private String album;			//Name of the Album
-	private String author;			//Name of the Author
-	private String genre;			//Name of the Genre
+	private List<String> authors;	//Names of the Authors
+	private Genre genre;			//Name of the Genre
 	
 	private int month;				//Month Released
 	private int year;				//Year Released
 	
 	private List<Rating> ratings;
-	private long totalRatingCount = 0;
-	private double overallRating;
-	private double topGenreRating;
-	private double topCriticRating;
+	private long totalRatingsCount;
+	private double avgRating;
+	private double avgGenreRating;
+	private double avgCriticRating;
+	
+	public Song() {
+		super();
+		this.authors = new ArrayList<>();
+		this.ratings = new ArrayList<>();
+		
+	}
+	
+	public Song(String song, String album, List<String> authors, Genre genre, int month, int year, List<Rating> ratings) {
+		super();
+		this.song = song;
+		this.album = album;
+		this.authors = authors;
+		this.genre = genre;
+		this.month = month;
+		this.year = year;
+		this.ratings = new ArrayList<Rating>();
+		this.totalRatingsCount = 0;	
+	}
 	
 	//Gets the song's ID
 	public String getId() {
@@ -49,12 +63,12 @@ public class Song {
 	}
 	
 	//Gets the song's Authors name
-	public String getAuthor() {
-		return this.author;
+	public List<String> getAuthors() {
+		return this.authors;
 	}
 	
 	//Gets the song's Genre
-	public String getGenre() {
+	public Genre getGenre() {
 		return this.genre;
 	}
 	
@@ -70,12 +84,12 @@ public class Song {
 	
 	//Gets the # of times song was rated
 	public long getRatingCount() {
-		return this.totalRatingCount;
+		return this.totalRatingsCount;
 	}
 	
 	//Gets the song's overall rating
 	public double getOverallRating() {
-		return this.overallRating;
+		return this.avgRating;
 	}
 	
 	//Sets the song's name
@@ -91,13 +105,13 @@ public class Song {
 	}
 	
 	//Sets the song's Authors name
-	public boolean setAuthor(String name) {
-		this.author = name;
-		return this.author == name;
+	public boolean setAuthors(List<String> names) {
+		this.authors = names;
+		return this.authors == names;
 	}
 	
 	//Sets the song's Genre
-	public boolean setGenre(String name) {
+	public boolean setGenre(Genre name) {
 		this.genre = name;
 		return this.genre == name;
 	}
@@ -117,15 +131,15 @@ public class Song {
 	//Sets the rating count
 	@SuppressWarnings("unused") //need privileges before this can be added
 	private boolean setRatingCount(long ratingCount) {
-			this.totalRatingCount = ratingCount;
-			return this.totalRatingCount == ratingCount;
+			this.totalRatingsCount = ratingCount;
+			return this.totalRatingsCount == ratingCount;
 		}
 	
 	//Sets the overall Rating
 	@SuppressWarnings("unused") //need privileges before this can be added
 	private boolean setOverallRating(double overallRating) {
-		this.overallRating = overallRating;
-		return this.overallRating == overallRating;
+		this.avgRating = overallRating;
+		return this.avgRating == overallRating;
 	}
 
 	public List<Rating> getRatings() {
@@ -137,19 +151,19 @@ public class Song {
 	}
 
 	public double getTopGenreRating() {
-		return topGenreRating;
+		return avgGenreRating;
 	}
 
 	public void setTopGenreRating(double topGenreRating) {
-		this.topGenreRating = topGenreRating;
+		this.avgGenreRating = topGenreRating;
 	}
 
 	public double getTopCriticRating() {
-		return topCriticRating;
+		return avgCriticRating;
 	}
 
 	public void setTopCriticRating(double topCriticRating) {
-		this.topCriticRating = topCriticRating;
+		this.avgCriticRating = topCriticRating;
 	}
 
 		

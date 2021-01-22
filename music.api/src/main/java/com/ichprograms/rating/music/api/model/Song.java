@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,7 +13,7 @@ public class Song {
 	@Id
 	private String id;				//Songs UID
 	
-	private String song;			//Name of the Song
+	private String title;			//Name of the Song
 	private String album;			//Name of the Album
 	private List<String> authors;	//Names of the Authors
 	private Genre genre;			//Name of the Genre
@@ -22,6 +21,7 @@ public class Song {
 	private int month;				//Month Released
 	private int year;				//Year Released
 	
+	@DBRef
 	private List<Rating> ratings;
 	private long totalRatingsCount;
 	private double avgRating;
@@ -32,19 +32,22 @@ public class Song {
 		super();
 		this.authors = new ArrayList<>();
 		this.ratings = new ArrayList<>();
+		this.totalRatingsCount = 0;
+		this.avgRating = 0;
+		this.avgGenreRating = 0;
+		this.avgCriticRating = 0;
 		
 	}
 	
-	public Song(String song, String album, List<String> authors, Genre genre, int month, int year, List<Rating> ratings) {
+	public Song(String title, String album, List<String> authors, Genre genre, int month, int year, List<Rating> ratings) {
 		super();
-		this.song = song;
+		this.title = title;
 		this.album = album;
 		this.authors = authors;
 		this.genre = genre;
 		this.month = month;
 		this.year = year;
-		this.ratings = new ArrayList<Rating>();
-		this.totalRatingsCount = 0;	
+		this.ratings = new ArrayList<Rating>();	
 	}
 	
 	//Gets the song's ID
@@ -53,8 +56,8 @@ public class Song {
 	}
 	
 	//Gets the song's name
-	public String getSong() {
-		return this.song;
+	public String getTitle() {
+		return this.title;
 	}
 	
 	//Gets the song's Album name
@@ -62,7 +65,7 @@ public class Song {
 		return this.album;
 	}
 	
-	//Gets the song's Authors name
+	//Gets the song's Authors names
 	public List<String> getAuthors() {
 		return this.authors;
 	}
@@ -93,9 +96,9 @@ public class Song {
 	}
 	
 	//Sets the song's name
-	public boolean setSong(String name) {
-		this.song = name;
-		return this.song == name;
+	public boolean setTitle(String title) {
+		this.title = title;
+		return this.title == title;
 	}
 	
 	//Sets the song's Album name
@@ -141,7 +144,8 @@ public class Song {
 		this.avgRating = overallRating;
 		return this.avgRating == overallRating;
 	}
-
+	
+	//TODO Auto Generated Eclipse Methods need placed and updated
 	public List<Rating> getRatings() {
 		return ratings;
 	}

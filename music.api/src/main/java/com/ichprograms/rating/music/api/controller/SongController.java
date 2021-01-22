@@ -2,12 +2,10 @@ package com.ichprograms.rating.music.api.controller;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,11 +29,32 @@ public class SongController {
 	   return songService.getAll();
 	}
 	   
-	@GetMapping("/page") //Get all songs with UID
-	public Map<String, Object> getAllSongsInPage(@RequestParam(name = "pageno", defaultValue = "0") int pageNo,
+	@GetMapping("/page") //Get all songs in page format
+	public Map<String, Object> getAllInPage(@RequestParam(name = "pageno", defaultValue = "0") int pageNo,
 			@RequestParam (name = "pagesize", defaultValue = "2") int pageSize,
-			@RequestParam (name = "sortby", defaultValue = "id") String sortBy){
-	    return songService.getAllSongsInPage(pageNo, pageSize, sortBy);
+			@RequestParam (name = "sortby", defaultValue = "id") String sortBy) {
+		
+	    return songService.getAllInPage(pageNo, pageSize, sortBy);
+	}
+	
+	@GetMapping("/example") //Get all songs by example
+	public List<Song> getAllByExample(@RequestBody Song song) {	 
+		return songService.getAllByExample(song);
+	}
+	
+	@GetMapping("/title") //TODO Explanation of method
+	public List<Song> getAllByTitle(@RequestParam(name = "title") String title) {
+		return songService.getAllByTitle(title);	
+	}
+	
+	@GetMapping("/genre")
+	public List<Song> getAllByGenre(@RequestParam(name = "genre") String genre) {
+		return songService.getAllByGenre(genre);	
+	}
+	
+	@GetMapping("/rating/greaterthan")
+	public List<Song> getAllByRatingGreaterThan(@RequestParam(name = "avgRating") double avgRating) {
+		return songService.getAllByRatingGreaterThan(avgRating);	
 	}
 	
 	//POST Methods

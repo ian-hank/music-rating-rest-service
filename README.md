@@ -2,7 +2,7 @@
 
 ### Author: Ian C. Hank
 ### Version: v1.0-alpha
-### Old Release is a local terminal based app!
+### Until I update the README if youd like to see the RESTFul implementation currently check the source files!
 
 ##### More About The Project:
 

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,7 @@ public class SongController {
 	private SongService songService;
 	
 	//GET Methods
+	@CrossOrigin(origins = "http://localhost:4500") //CORS
 	@GetMapping("/all") //Get all songs in the collection
 	public List<Song> getAll() {	
 	   return songService.getAll();

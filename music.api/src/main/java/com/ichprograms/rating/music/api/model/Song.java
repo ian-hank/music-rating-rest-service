@@ -39,7 +39,7 @@ public class Song {
 		
 	}
 	
-	public Song(String title, String album, List<String> authors, Genre genre, int month, int year, List<Rating> ratings) {
+	public Song(String title, String album, ArrayList<String> authors, Genre genre, int month, int year) {
 		super();
 		this.title = title;
 		this.album = album;

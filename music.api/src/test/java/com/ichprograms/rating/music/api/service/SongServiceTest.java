@@ -1,10 +1,10 @@
-package com.ichprograms.rating.music.api;
+package com.ichprograms.rating.music.api.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MusicRatingApiApplicationTests {
+public class SongServiceTest {
 
 	@Test
 	void contextLoads() {

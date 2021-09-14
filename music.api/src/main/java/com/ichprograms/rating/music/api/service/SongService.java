@@ -9,6 +9,8 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.ExampleMatcher.GenericPropertyMatcher;
 import org.springframework.data.domain.ExampleMatcher.StringMatcher;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,13 +19,25 @@ import org.springframework.stereotype.Service;
 
 import com.ichprograms.rating.music.api.model.Song;
 import com.ichprograms.rating.music.api.repository.SongRepository;
+import com.mongodb.client.MongoClient;
 
 @Service
 public class SongService {
 	
 	@Autowired
+	MongoTemplate mongoTemplate;
+	
+	MongoClient mongoClient;
+	
+	@Autowired
 	SongRepository songRepository;
 	
+	/* TODO Aggregation
+	public String getLooked() {
+		Aggregation aggregation = Aggregation.newAggregation(Aggregation.lookup("title", null, null, null));
+		mongoTemplate.aggregate(null, null, null);
+	}
+	*/
 	public List<Song> getAll() {
 		return songRepository.findAll();
 	}

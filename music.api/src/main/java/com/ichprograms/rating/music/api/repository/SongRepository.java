@@ -10,12 +10,11 @@ import com.ichprograms.rating.music.api.model.Song;
 
 @Repository
 public interface SongRepository extends MongoRepository<Song, String> {
-
+	
 	List<Song> findByTitleStartingWith(String title);
 
 	List<Song> findByGenreMainGenre(String genre);
 	
 	@Query(value = "{'avgRating': {$gte:?0}}", fields = "{'title':1, 'authors':1, 'id':0}")
-	List<Song> ratingGreaterThan(double avgRating);
-	
+	List<Song> ratingGreaterThan(double avgRating);	
 }

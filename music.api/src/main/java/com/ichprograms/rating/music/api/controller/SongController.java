@@ -44,17 +44,17 @@ public class SongController {
 		return songService.getAllByExample(song);
 	}
 	
-	@GetMapping("/title") //TODO Explanation of method
+	@GetMapping("/title") //Get all songs by title
 	public List<Song> getAllByTitle(@RequestParam(name = "title") String title) {
 		return songService.getAllByTitle(title);	
 	}
 	
-	@GetMapping("/genre")
+	@GetMapping("/genre") //Get all songs by genre
 	public List<Song> getAllByGenre(@RequestParam(name = "genre") String genre) {
 		return songService.getAllByGenre(genre);	
 	}
 	
-	@GetMapping("/rating/greaterthan")
+	@GetMapping("/rating/greaterthan") //Get all songs by rating > than param
 	public List<Song> getAllByRatingGreaterThan(@RequestParam(name = "avgRating") double avgRating) {
 		return songService.getAllByRatingGreaterThan(avgRating);	
 	}
@@ -69,12 +69,12 @@ public class SongController {
 	//TODO Put a JSON Patch here eventually to make updating ratings easier
 			
 	//PUT Methods
-	@PutMapping("/update")
+	@PutMapping("/update") //Updates the details of a song
 	public Song updateSong(@RequestBody Song song) {
 		return songService.updateSong(song);
 	}
 	
-	//DELETE Methods
+	//DELETE Methods 
 	@DeleteMapping("/delete/{id}") //Delete song by its UID
 	public void deleteSong(@RequestParam("id") String id) {
 	    songService.delete(id);    

@@ -9,9 +9,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class SongTest {
-    
+    @DisplayName("Determines if the pass-by-value Song constructor intializes properly with the given values.")
     @Test
-    public void SongConstructorTest() {
+    public void SongConstructorAssignementTest() {
         ArrayList<String> setAuthors = new ArrayList<>(Arrays.asList("Virtual Riot","Space Jesus"));
         Genre setGenre = new Genre("Riddim", "Dubstep");
         int month = 9;
@@ -24,7 +24,5 @@ public class SongTest {
         assertEquals(setGenre, newSong.getGenre());
         assertEquals(month, newSong.getMonth());
         assertEquals(year, newSong.getYear());
-        System.out.println("Success");
     }
-
 }

@@ -89,10 +89,25 @@ public class Song {
 	public long getRatingCount() {
 		return this.totalRatingsCount;
 	}
+
+	//Gets a list of all ratings for the song
+	public List<Rating> getRatings() {
+		return ratings;
+	}
 	
-	//Gets the song's overall rating
+	//Gets the song's overall average rating
 	public double getOverallRating() {
 		return this.avgRating;
+	}
+
+	//Gets the songs genre specific rating
+	public double getGenreRating() {
+		return avgGenreRating;
+	}
+
+	//Gets the songs critic specific rating
+	public double getCriticRating() {
+		return avgCriticRating;
 	}
 	
 	//Sets the song's name
@@ -129,46 +144,5 @@ public class Song {
 	public boolean setYear(int name) {
 		this.year = name;
 		return this.year == name;
-	}
-	
-	//Sets the rating count
-	@SuppressWarnings("unused") //need privileges before this can be added
-	private boolean setRatingCount(long ratingCount) {
-			this.totalRatingsCount = ratingCount;
-			return this.totalRatingsCount == ratingCount;
-		}
-	
-	//Sets the overall Rating
-	@SuppressWarnings("unused") //need privileges before this can be added
-	private boolean setOverallRating(double overallRating) {
-		this.avgRating = overallRating;
-		return this.avgRating == overallRating;
-	}
-	
-	//TODO Auto Generated Eclipse Methods need placed and updated
-	public List<Rating> getRatings() {
-		return ratings;
-	}
-
-	public void setRatings(List<Rating> ratings) {
-		this.ratings = ratings;
-	}
-
-	public double getTopGenreRating() {
-		return avgGenreRating;
-	}
-
-	public void setTopGenreRating(double topGenreRating) {
-		this.avgGenreRating = topGenreRating;
-	}
-
-	public double getTopCriticRating() {
-		return avgCriticRating;
-	}
-
-	public void setTopCriticRating(double topCriticRating) {
-		this.avgCriticRating = topCriticRating;
-	}
-
-		
+	}	
 }

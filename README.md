@@ -1,8 +1,8 @@
 # Music Rating Program
 
 ### Author: Ian C. Hank
-### Version: v1.0-alpha
-### Until I update the README if youd like to see the RESTFul implementation currently check the source files!
+### Version: v1.1-alpha
+### Until I update the README, if you'd like to see the RESTFul API implementation check the source files!
 
 ##### More About The Project:
 
@@ -28,4 +28,5 @@ save their database and exit where it will rewrite all objects to the file.
 ###### -Exit and Save
 
 #### v1.0-alpha
-Beginning to refactor and set endpoints from the old Java code. The base skeleton of the backend is laid out and working properly. Using PostMan to test and try requests is working well with MongoDB and the RESTFul service. The database design still needs to be formalized and the forntend has yet to be started. A lot of the tricky steps are almost over and once the backend is done the frontend will go fast. 
+Beginning to refactor and set endpoints from the old Java code. The base skeleton of the backend is laid out and working properly. Using PostMan to test and try requests is working well with MongoDB and the RESTFul service. The database design still needs to be formalized and the frontend has yet to be started. A lot of the tricky steps are almost over and once the backend is done the frontend will go fast. 
+
